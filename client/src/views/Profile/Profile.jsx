@@ -1,7 +1,7 @@
 import "./Profile.less";
 // import "./Badge.less";
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ProfileCard from "../../components/Profile/ProfileCard";
 import Badge from "../../components/Profile/Badge";
 import ProgressBar from "../../components/Profile/ProgressBar";
@@ -9,8 +9,45 @@ import NavBar from "../../components/NavBar/NavBar";
 import ProjectSection from "../../components/Profile/ProjectSection";
 import BadgeTable from "../../components/Profile/BadgeTable";
 import BadgeDisplay from "../../components/Profile/BadgeDisplay";
+import { getProfile } from "../../Utils/requests";
 
 const Profile = () => {
+  const userId = 55; // Todo Get from url params
+  const isStudent = true; // Todo Get from url params
+
+  const [pageData, setPageData] = useState({
+    status: "loading",
+  });
+
+  const refreshPageData = async () => {
+    try {
+      const getProfileResponse = await getProfile(userId, isStudent);
+      const newPageData = {
+        status: "loaded",
+        profileImage: "https://media.discordapp.net/attachments/517010400860962831/1171160597463838840/image.png",
+      }
+
+      if (getProfileResponse.data.profile.type === "user") {
+        newPageData.name = getProfileResponse.data.profile.user.username;
+        newPageData.role = getProfileResponse.data.profile.user.role.name;
+      } else {
+        newPageData.name = getProfileResponse.data.profile.student.name;
+        newPageData.role = "Student";
+      }
+
+      setPageData(newPageData);
+    } catch (e) {
+      setPageData({
+        status: "errored",
+        error: e,
+      })
+    }
+  }
+
+  useEffect(() => {
+    refreshPageData();
+  }, []);
+
   const [bio, setBio] = useState('Your bio text goes here');
   const [isEditingBio, setIsEditingBio] = useState(false);
   const [selectedBadges, setSelectedBadges] = useState([1, 2, 3, 4]);
@@ -48,9 +85,9 @@ const Profile = () => {
     <div className='profile-page-grid nav-padding'>
       <NavBar />
       <ProfileCard
-        imageUrl={"https://media.discordapp.net/attachments/517010400860962831/1171160597463838840/image.png"}
-        name={"John Smith"}
-        role={"Student"}
+        imageUrl={pageData.profileImage}
+        name={pageData.name}
+        role={pageData.role}
       />
       <div className="profile-biography-section profile-page-section">
         <h2>User Biography</h2>

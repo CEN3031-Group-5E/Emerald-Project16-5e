@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "profiles",
+  "collectionName": "profile",
   "info": {
-    "name": "Profiles",
+    "name": "Profile",
     "description": ""
   },
   "options": {
@@ -11,13 +11,15 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "Biography": {
+    "biography": {
       "type": "text"
     },
     "student": {
+      "unique": true,
       "model": "student"
     },
     "user": {
+      "unique": true,
       "plugin": "users-permissions",
       "model": "user"
     },
@@ -26,7 +28,8 @@
       "enum": [
         "student",
         "user"
-      ]
+      ],
+      "required": true
     }
   }
 }
