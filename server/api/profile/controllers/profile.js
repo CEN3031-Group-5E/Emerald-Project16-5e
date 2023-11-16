@@ -7,26 +7,29 @@ const {sanitizeEntity} = require("strapi-utils");
  * to customize this controller
  */
 
+const fetchProfile = (id, isStudent) => {
+  // The array of strings tells findOne to populate/join the relation
+  if (isStudent) {
+    return strapi.services.profile.findOne({
+      type: "student",
+      student: id,
+    }, ["student"])
+  } else {
+    return strapi.services.profile.findOne({
+      type: "user",
+      user: id,
+    }, ["user", "user.role"])
+  }
+};
+
 module.exports = {
   async findOne(ctx) {
     const id = ctx.params.id;
-    const isStudent = Boolean(JSON.parse(ctx.request.query.student));
+    const isStudent = Boolean(JSON.parse(ctx.request.query.student ?? "false"));
 
-    let profile = await (() => {
-      if (isStudent) {
-        return strapi.services.profile.findOne({
-          type: "student",
-          student: id,
-        }, ["student"])
-      } else {
-        return strapi.services.profile.findOne({
-          type: "user",
-          user: id,
-        }, ["user"])
-      }
-    })()
-
+    let profile = await fetchProfile(id, isStudent);
     if (!profile) {
+      // Create profile
       if (isStudent) {
         const student = await strapi.services.student.findOne({
           id: id,
@@ -36,7 +39,7 @@ module.exports = {
           return;
         }
 
-        profile = await strapi.services.profile.create({
+        await strapi.services.profile.create({
           type: "student",
           student: student,
         })
@@ -49,17 +52,22 @@ module.exports = {
           return;
         }
 
-        profile = await strapi.services.profile.create({
+        await strapi.services.profile.create({
           type: "user",
           user: user,
         })
       }
+
+      // Fetch again now that the profile has been created
+      profile = await fetchProfile(id, isStudent);
     }
 
+    // 404
     if (!profile) {
       return;
     }
 
+    // Return and santize to remove private fields
     return {
       profile: sanitizeEntity(profile, {
         model: strapi.models.profile,
