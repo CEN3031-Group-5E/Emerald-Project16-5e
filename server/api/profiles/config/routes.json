@@ -2,22 +2,6 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/profiles",
-      "handler": "profiles.find",
-      "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "GET",
-      "path": "/profiles/count",
-      "handler": "profiles.count",
-      "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "GET",
       "path": "/profiles/:id",
       "handler": "profiles.findOne",
       "config": {
