@@ -2,16 +2,16 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/profiles/:id",
-      "handler": "profiles.findOne",
+      "path": "/profile/:id",
+      "handler": "profile.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/profiles/:id",
-      "handler": "profiles.update",
+      "path": "/profile/:id",
+      "handler": "profile.update",
       "config": {
         "policies": []
       }

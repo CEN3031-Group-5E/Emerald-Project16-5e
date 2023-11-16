@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "profiles",
+  "collectionName": "profile",
   "info": {
-    "name": "Profiles",
+    "name": "Profile",
     "description": ""
   },
   "options": {

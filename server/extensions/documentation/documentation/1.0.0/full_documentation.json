@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "11/16/2023 7:07:22 PM"
+    "x-generation-date": "11/16/2023 7:16:51 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -6423,17 +6423,17 @@
         ]
       }
     },
-    "/profiles/{id}": {
+    "/profile/{id}": {
       "get": {
         "deprecated": false,
-        "description": "Find one profiles record",
+        "description": "Find one profile record",
         "responses": {
           "200": {
-            "description": "Retrieve profiles document(s)",
+            "description": "Retrieve profile document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Profiles"
+                  "$ref": "#/components/schemas/profile"
                 }
               }
             }
@@ -6471,7 +6471,7 @@
         },
         "summary": "",
         "tags": [
-          "Profiles"
+          "profile"
         ],
         "parameters": [
           {
@@ -6488,14 +6488,14 @@
       },
       "put": {
         "deprecated": false,
-        "description": "Update a single profiles record",
+        "description": "Update a single profile record",
         "responses": {
           "200": {
-            "description": "Retrieve profiles document(s)",
+            "description": "Retrieve profile document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Profiles"
+                  "$ref": "#/components/schemas/profile"
                 }
               }
             }
@@ -6533,7 +6533,7 @@
         },
         "summary": "",
         "tags": [
-          "Profiles"
+          "profile"
         ],
         "requestBody": {
           "description": "",
@@ -6541,7 +6541,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewProfiles"
+                "$ref": "#/components/schemas/Newprofile"
               }
             }
           }
@@ -13809,7 +13809,7 @@
           }
         }
       },
-      "Profiles": {
+      "Profile": {
         "required": [
           "id",
           "type"
@@ -13917,7 +13917,148 @@
           }
         }
       },
-      "NewProfiles": {
+      "NewProfile": {
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "biography": {
+            "type": "string"
+          },
+          "student": {
+            "type": "string"
+          },
+          "user": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "student",
+              "user"
+            ]
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_by": {
+            "type": "string"
+          },
+          "updated_by": {
+            "type": "string"
+          }
+        }
+      },
+      "profile": {
+        "required": [
+          "id",
+          "type"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "biography": {
+            "type": "string"
+          },
+          "student": {
+            "required": [
+              "id",
+              "enrolled"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "character": {
+                "type": "string"
+              },
+              "classroom": {
+                "type": "string"
+              },
+              "sessions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "enrolled": {
+                "type": "boolean"
+              },
+              "last_logged_in": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "user": {
+            "required": [
+              "id",
+              "username",
+              "email"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "username": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              },
+              "resetPasswordToken": {
+                "type": "string"
+              },
+              "confirmationToken": {
+                "type": "string"
+              },
+              "confirmed": {
+                "type": "boolean"
+              },
+              "blocked": {
+                "type": "boolean"
+              },
+              "role": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "student",
+              "user"
+            ]
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Newprofile": {
         "required": [
           "type"
         ],
@@ -15594,7 +15735,10 @@
       "name": "Mentor"
     },
     {
-      "name": "Profiles"
+      "name": "Profile"
+    },
+    {
+      "name": "profile"
     },
     {
       "name": "Sandbox"

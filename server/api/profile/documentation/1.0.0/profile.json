@@ -1,16 +1,16 @@
 {
   "paths": {
-    "/profiles/{id}": {
+    "/profile/{id}": {
       "get": {
         "deprecated": false,
-        "description": "Find one profiles record",
+        "description": "Find one profile record",
         "responses": {
           "200": {
-            "description": "Retrieve profiles document(s)",
+            "description": "Retrieve profile document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Profiles"
+                  "$ref": "#/components/schemas/Profile"
                 }
               }
             }
@@ -48,7 +48,7 @@
         },
         "summary": "",
         "tags": [
-          "Profiles"
+          "Profile"
         ],
         "parameters": [
           {
@@ -65,14 +65,14 @@
       },
       "put": {
         "deprecated": false,
-        "description": "Update a single profiles record",
+        "description": "Update a single profile record",
         "responses": {
           "200": {
-            "description": "Retrieve profiles document(s)",
+            "description": "Retrieve profile document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Profiles"
+                  "$ref": "#/components/schemas/Profile"
                 }
               }
             }
@@ -110,7 +110,7 @@
         },
         "summary": "",
         "tags": [
-          "Profiles"
+          "Profile"
         ],
         "requestBody": {
           "description": "",
@@ -118,7 +118,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewProfiles"
+                "$ref": "#/components/schemas/NewProfile"
               }
             }
           }
@@ -140,7 +140,7 @@
   },
   "components": {
     "schemas": {
-      "Profiles": {
+      "Profile": {
         "required": [
           "id",
           "type"
@@ -248,7 +248,7 @@
           }
         }
       },
-      "NewProfiles": {
+      "NewProfile": {
         "required": [
           "type"
         ],
@@ -285,7 +285,7 @@
   },
   "tags": [
     {
-      "name": "Profiles"
+      "name": "Profile"
     }
   ]
 }
