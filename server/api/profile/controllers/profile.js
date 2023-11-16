@@ -9,28 +9,25 @@ const {sanitizeEntity} = require("strapi-utils");
 
 module.exports = {
   async findOne(ctx) {
-    const {id, student} = ctx.request.query
-
-    console.log(ctx);
-    console.log(ctx.request.query);
-    console.log(ctx.request.body);
+    const id = ctx.params.id;
+    const isStudent = Boolean(JSON.parse(ctx.request.query.student));
 
     let profile = await (() => {
-      if (student) {
+      if (isStudent) {
         return strapi.services.profile.findOne({
-          student: id,
           type: "student",
-        }, [])
+          student: id,
+        }, ["student"])
       } else {
         return strapi.services.profile.findOne({
-          user: id,
           type: "user",
-        }, [])
+          user: id,
+        }, ["user"])
       }
     })()
 
-    if (!profile && false) {
-      if (student) {
+    if (!profile) {
+      if (isStudent) {
         const student = await strapi.services.student.findOne({
           id: id,
         });
@@ -40,11 +37,11 @@ module.exports = {
         }
 
         profile = await strapi.services.profile.create({
-          student: id,
           type: "student",
+          student: student,
         })
       } else {
-        const user = await strapi.services.user.findOne({
+        const user = await strapi.query('user', 'users-permissions').findOne({
           id: id,
         });
 
@@ -53,13 +50,15 @@ module.exports = {
         }
 
         profile = await strapi.services.profile.create({
-          student: id,
-          type: "student",
+          type: "user",
+          user: user,
         })
       }
     }
 
-    console.log(profile);
+    if (!profile) {
+      return;
+    }
 
     return {
       profile: sanitizeEntity(profile, {
