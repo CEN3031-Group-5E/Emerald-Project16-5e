@@ -99,6 +99,12 @@ export default function NavBar() {
           &nbsp; Sign Out
         </Menu.Item>
       ) : null}
+      {shouldShowRoute('Profile') ? (
+        <Menu.Item key='9' onClick={() => handleRouteChange(routes.Profile)}>
+          <i className='fa fa-user' />
+          &nbsp; Profile
+        </Menu.Item>
+      ) : null}
     </Menu>
   );
 
