@@ -522,13 +522,13 @@
           "id": {
             "type": "string"
           },
-          "Name": {
+          "name": {
             "type": "string"
           },
-          "Description": {
+          "description": {
             "type": "string"
           },
-          "Progress": {
+          "progress": {
             "type": "number"
           },
           "published_at": {
@@ -539,13 +539,13 @@
       },
       "NewBadge": {
         "properties": {
-          "Name": {
+          "name": {
             "type": "string"
           },
-          "Description": {
+          "description": {
             "type": "string"
           },
-          "Progress": {
+          "progress": {
             "type": "number"
           },
           "published_at": {

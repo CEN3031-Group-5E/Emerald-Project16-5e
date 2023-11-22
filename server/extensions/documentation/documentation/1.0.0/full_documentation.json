@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "11/16/2023 7:24:07 PM"
+    "x-generation-date": "11/22/2023 1:26:43 AM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -12643,13 +12643,13 @@
           "id": {
             "type": "string"
           },
-          "Name": {
+          "name": {
             "type": "string"
           },
-          "Description": {
+          "description": {
             "type": "string"
           },
-          "Progress": {
+          "progress": {
             "type": "number"
           },
           "published_at": {
@@ -12660,13 +12660,13 @@
       },
       "NewBadge": {
         "properties": {
-          "Name": {
+          "name": {
             "type": "string"
           },
-          "Description": {
+          "description": {
             "type": "string"
           },
-          "Progress": {
+          "progress": {
             "type": "number"
           },
           "published_at": {
