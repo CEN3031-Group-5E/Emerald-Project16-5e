@@ -1,5 +1,4 @@
 import "./Profile.less";
-// import "./Badge.less";
 
 import React, { useEffect, useState } from 'react';
 import ProfileCard from "../../components/Profile/ProfileCard";
