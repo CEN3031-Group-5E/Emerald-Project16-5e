@@ -2,30 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 15.4 (Debian 15.4-1.pgdg120+1)
--- Dumped by pg_dump version 15.4 (Debian 15.4-1.pgdg120+1)
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- Name: strapi; Type: DATABASE; Schema: -; Owner: postgres
---
-
-CREATE DATABASE strapi WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'en_US.utf8';
-
-
-ALTER DATABASE strapi OWNER TO postgres;
-
-\connect strapi
+-- Dumped from database version 16.1 (Debian 16.1-1.pgdg120+1)
+-- Dumped by pg_dump version 16.1 (Debian 16.1-1.pgdg120+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -91,7 +69,7 @@ CREATE SEQUENCE public.activities__blocks_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.activities__blocks_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.activities__blocks_id_seq OWNER TO postgres;
 
 --
 -- Name: activities__blocks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -113,7 +91,7 @@ CREATE SEQUENCE public.activities_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.activities_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.activities_id_seq OWNER TO postgres;
 
 --
 -- Name: activities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -148,7 +126,7 @@ CREATE SEQUENCE public.activities_learning_components__learning_components_activ
     CACHE 1;
 
 
-ALTER TABLE public.activities_learning_components__learning_components_activities_ OWNER TO postgres;
+ALTER SEQUENCE public.activities_learning_components__learning_components_activities_ OWNER TO postgres;
 
 --
 -- Name: activities_learning_components__learning_components_activities_; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -203,7 +181,7 @@ CREATE SEQUENCE public.authorized_workspaces__blocks_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.authorized_workspaces__blocks_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.authorized_workspaces__blocks_id_seq OWNER TO postgres;
 
 --
 -- Name: authorized_workspaces__blocks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -225,13 +203,54 @@ CREATE SEQUENCE public.authorized_workspaces_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.authorized_workspaces_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.authorized_workspaces_id_seq OWNER TO postgres;
 
 --
 -- Name: authorized_workspaces_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.authorized_workspaces_id_seq OWNED BY public.authorized_workspaces.id;
+
+
+--
+-- Name: badges; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.badges (
+    id integer NOT NULL,
+    "Name" character varying(255),
+    "Description" character varying(255),
+    "Progress" numeric(10,2),
+    published_at timestamp with time zone,
+    created_by integer,
+    updated_by integer,
+    created_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
+    updated_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP
+);
+
+
+ALTER TABLE public.badges OWNER TO postgres;
+
+--
+-- Name: badges_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.badges_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.badges_id_seq OWNER TO postgres;
+
+--
+-- Name: badges_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.badges_id_seq OWNED BY public.badges.id;
 
 
 --
@@ -265,7 +284,7 @@ CREATE SEQUENCE public.block_images_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.block_images_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.block_images_id_seq OWNER TO postgres;
 
 --
 -- Name: block_images_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -323,7 +342,7 @@ CREATE SEQUENCE public.blocks_categories_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.blocks_categories_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.blocks_categories_id_seq OWNER TO postgres;
 
 --
 -- Name: blocks_categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -345,7 +364,7 @@ CREATE SEQUENCE public.blocks_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.blocks_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.blocks_id_seq OWNER TO postgres;
 
 --
 -- Name: blocks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -383,7 +402,7 @@ CREATE SEQUENCE public.challenges_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.challenges_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.challenges_id_seq OWNER TO postgres;
 
 --
 -- Name: challenges_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -438,7 +457,7 @@ CREATE SEQUENCE public.classrooms__authorized_workspaces_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.classrooms__authorized_workspaces_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.classrooms__authorized_workspaces_id_seq OWNER TO postgres;
 
 --
 -- Name: classrooms__authorized_workspaces_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -460,7 +479,7 @@ CREATE SEQUENCE public.classrooms_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.classrooms_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.classrooms_id_seq OWNER TO postgres;
 
 --
 -- Name: classrooms_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -495,7 +514,7 @@ CREATE SEQUENCE public.classrooms_mentors__mentors_classrooms_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.classrooms_mentors__mentors_classrooms_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.classrooms_mentors__mentors_classrooms_id_seq OWNER TO postgres;
 
 --
 -- Name: classrooms_mentors__mentors_classrooms_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -530,7 +549,7 @@ CREATE SEQUENCE public.classrooms_teachers__teachers_classrooms_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.classrooms_teachers__teachers_classrooms_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.classrooms_teachers__teachers_classrooms_id_seq OWNER TO postgres;
 
 --
 -- Name: classrooms_teachers__teachers_classrooms_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -568,7 +587,7 @@ CREATE SEQUENCE public.core_store_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.core_store_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.core_store_id_seq OWNER TO postgres;
 
 --
 -- Name: core_store_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -606,7 +625,7 @@ CREATE SEQUENCE public.grades_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.grades_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.grades_id_seq OWNER TO postgres;
 
 --
 -- Name: grades_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -645,7 +664,7 @@ CREATE SEQUENCE public.learning_component_types_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.learning_component_types_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.learning_component_types_id_seq OWNER TO postgres;
 
 --
 -- Name: learning_component_types_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -685,7 +704,7 @@ CREATE SEQUENCE public.learning_components_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.learning_components_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.learning_components_id_seq OWNER TO postgres;
 
 --
 -- Name: learning_components_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -728,7 +747,7 @@ CREATE SEQUENCE public.lesson_modules_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.lesson_modules_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.lesson_modules_id_seq OWNER TO postgres;
 
 --
 -- Name: lesson_modules_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -769,7 +788,7 @@ CREATE SEQUENCE public.mentors_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.mentors_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.mentors_id_seq OWNER TO postgres;
 
 --
 -- Name: mentors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -807,7 +826,7 @@ CREATE SEQUENCE public.objective_types_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.objective_types_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.objective_types_id_seq OWNER TO postgres;
 
 --
 -- Name: objective_types_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -847,13 +866,55 @@ CREATE SEQUENCE public.objectives_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.objectives_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.objectives_id_seq OWNER TO postgres;
 
 --
 -- Name: objectives_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.objectives_id_seq OWNED BY public.objectives.id;
+
+
+--
+-- Name: profile; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.profile (
+    id integer NOT NULL,
+    biography text,
+    student integer,
+    "user" integer,
+    type character varying(255),
+    published_at timestamp with time zone,
+    created_by integer,
+    updated_by integer,
+    created_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
+    updated_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP
+);
+
+
+ALTER TABLE public.profile OWNER TO postgres;
+
+--
+-- Name: profile_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.profile_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.profile_id_seq OWNER TO postgres;
+
+--
+-- Name: profile_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.profile_id_seq OWNED BY public.profile.id;
 
 
 --
@@ -889,7 +950,7 @@ CREATE SEQUENCE public.saves_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.saves_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.saves_id_seq OWNER TO postgres;
 
 --
 -- Name: saves_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -929,7 +990,7 @@ CREATE SEQUENCE public.schools_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.schools_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.schools_id_seq OWNER TO postgres;
 
 --
 -- Name: schools_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -969,7 +1030,7 @@ CREATE SEQUENCE public.selections_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.selections_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.selections_id_seq OWNER TO postgres;
 
 --
 -- Name: selections_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1023,7 +1084,7 @@ CREATE SEQUENCE public.sessions__saves_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.sessions__saves_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.sessions__saves_id_seq OWNER TO postgres;
 
 --
 -- Name: sessions__saves_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1045,7 +1106,7 @@ CREATE SEQUENCE public.sessions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.sessions_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.sessions_id_seq OWNER TO postgres;
 
 --
 -- Name: sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1080,7 +1141,7 @@ CREATE SEQUENCE public.sessions_students__students_sessions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.sessions_students__students_sessions_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.sessions_students__students_sessions_id_seq OWNER TO postgres;
 
 --
 -- Name: sessions_students__students_sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1123,7 +1184,7 @@ CREATE SEQUENCE public.strapi_administrator_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.strapi_administrator_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.strapi_administrator_id_seq OWNER TO postgres;
 
 --
 -- Name: strapi_administrator_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1164,7 +1225,7 @@ CREATE SEQUENCE public.strapi_permission_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.strapi_permission_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.strapi_permission_id_seq OWNER TO postgres;
 
 --
 -- Name: strapi_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1202,7 +1263,7 @@ CREATE SEQUENCE public.strapi_role_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.strapi_role_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.strapi_role_id_seq OWNER TO postgres;
 
 --
 -- Name: strapi_role_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1237,7 +1298,7 @@ CREATE SEQUENCE public.strapi_users_roles_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.strapi_users_roles_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.strapi_users_roles_id_seq OWNER TO postgres;
 
 --
 -- Name: strapi_users_roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1275,7 +1336,7 @@ CREATE SEQUENCE public.strapi_webhooks_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.strapi_webhooks_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.strapi_webhooks_id_seq OWNER TO postgres;
 
 --
 -- Name: strapi_webhooks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1317,7 +1378,7 @@ CREATE SEQUENCE public.students_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.students_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.students_id_seq OWNER TO postgres;
 
 --
 -- Name: students_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1366,7 +1427,7 @@ CREATE SEQUENCE public.submissions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.submissions_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.submissions_id_seq OWNER TO postgres;
 
 --
 -- Name: submissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1421,7 +1482,7 @@ CREATE SEQUENCE public.teacher_workspaces__blocks_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.teacher_workspaces__blocks_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.teacher_workspaces__blocks_id_seq OWNER TO postgres;
 
 --
 -- Name: teacher_workspaces__blocks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1443,7 +1504,7 @@ CREATE SEQUENCE public.teacher_workspaces_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.teacher_workspaces_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.teacher_workspaces_id_seq OWNER TO postgres;
 
 --
 -- Name: teacher_workspaces_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1484,7 +1545,7 @@ CREATE SEQUENCE public.teachers_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.teachers_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.teachers_id_seq OWNER TO postgres;
 
 --
 -- Name: teachers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1526,7 +1587,7 @@ CREATE SEQUENCE public.units_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.units_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.units_id_seq OWNER TO postgres;
 
 --
 -- Name: units_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1577,7 +1638,7 @@ CREATE SEQUENCE public.upload_file_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.upload_file_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.upload_file_id_seq OWNER TO postgres;
 
 --
 -- Name: upload_file_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1615,7 +1676,7 @@ CREATE SEQUENCE public.upload_file_morph_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.upload_file_morph_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.upload_file_morph_id_seq OWNER TO postgres;
 
 --
 -- Name: upload_file_morph_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1656,7 +1717,7 @@ CREATE SEQUENCE public."users-permissions_permission_id_seq"
     CACHE 1;
 
 
-ALTER TABLE public."users-permissions_permission_id_seq" OWNER TO postgres;
+ALTER SEQUENCE public."users-permissions_permission_id_seq" OWNER TO postgres;
 
 --
 -- Name: users-permissions_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1694,7 +1755,7 @@ CREATE SEQUENCE public."users-permissions_role_id_seq"
     CACHE 1;
 
 
-ALTER TABLE public."users-permissions_role_id_seq" OWNER TO postgres;
+ALTER SEQUENCE public."users-permissions_role_id_seq" OWNER TO postgres;
 
 --
 -- Name: users-permissions_role_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1741,7 +1802,7 @@ CREATE SEQUENCE public."users-permissions_user_id_seq"
     CACHE 1;
 
 
-ALTER TABLE public."users-permissions_user_id_seq" OWNER TO postgres;
+ALTER SEQUENCE public."users-permissions_user_id_seq" OWNER TO postgres;
 
 --
 -- Name: users-permissions_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1783,6 +1844,13 @@ ALTER TABLE ONLY public.authorized_workspaces ALTER COLUMN id SET DEFAULT nextva
 --
 
 ALTER TABLE ONLY public.authorized_workspaces__blocks ALTER COLUMN id SET DEFAULT nextval('public.authorized_workspaces__blocks_id_seq'::regclass);
+
+
+--
+-- Name: badges id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.badges ALTER COLUMN id SET DEFAULT nextval('public.badges_id_seq'::regclass);
 
 
 --
@@ -1895,6 +1963,13 @@ ALTER TABLE ONLY public.objective_types ALTER COLUMN id SET DEFAULT nextval('pub
 --
 
 ALTER TABLE ONLY public.objectives ALTER COLUMN id SET DEFAULT nextval('public.objectives_id_seq'::regclass);
+
+
+--
+-- Name: profile id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.profile ALTER COLUMN id SET DEFAULT nextval('public.profile_id_seq'::regclass);
 
 
 --
@@ -2626,6 +2701,14 @@ COPY public.authorized_workspaces__blocks (id, authorized_workspace_id, block_id
 
 
 --
+-- Data for Name: badges; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.badges (id, "Name", "Description", "Progress", published_at, created_by, updated_by, created_at, updated_at) FROM stdin;
+\.
+
+
+--
 -- Data for Name: block_images; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2800,32 +2883,27 @@ COPY public.classrooms_teachers__teachers_classrooms (id, teacher_id, classroom_
 --
 
 COPY public.core_store (id, key, value, type, environment, tag) FROM stdin;
-265	model_def_application::authorized-workspace.authorized-workspace	{"uid":"application::authorized-workspace.authorized-workspace","collectionName":"authorized_workspaces","kind":"collectionType","info":{"name":"AuthorizedWorkspace","description":""},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":true},"attributes":{"name":{"type":"string","required":true},"description":{"type":"text"},"template":{"type":"text","required":true},"blocks":{"private":true,"collection":"block","attribute":"block","column":"id","isVirtual":true},"classroom":{"private":true,"via":"authorized_workspaces","model":"classroom"},"published_at":{"type":"datetime","configurable":false,"writable":true,"visible":false},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
-266	model_def_application::block.block	{"uid":"application::block.block","collectionName":"blocks","kind":"collectionType","info":{"name":"Block","description":""},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":false},"attributes":{"name":{"type":"string","required":true,"unique":true},"description":{"type":"text"},"blocks_category":{"via":"blocks","model":"blocks-category"},"image_url":{"type":"string"},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
-267	model_def_application::blocks-category.blocks-category	{"uid":"application::blocks-category.blocks-category","collectionName":"blocks_categories","kind":"collectionType","info":{"name":"Blocks Category"},"options":{"increments":true,"timestamps":["created_at","updated_at"]},"attributes":{"name":{"type":"string"},"blocks":{"via":"blocks_category","collection":"block","isVirtual":true},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
+289	plugin_documentation_config	{"restrictedAccess":false}	object		
+301	plugin_content_manager_configuration_content_types::application::school.school	{"uid":"application::school.school","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"name","defaultSortBy":"name","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"name":{"edit":{"label":"Name","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Name","searchable":true,"sortable":true}},"county":{"edit":{"label":"County","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"County","searchable":true,"sortable":true}},"state":{"edit":{"label":"State","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"State","searchable":true,"sortable":true}},"classrooms":{"edit":{"label":"Classrooms","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Classrooms","searchable":false,"sortable":false}},"mentors":{"edit":{"label":"Mentors","description":"","placeholder":"","visible":true,"editable":true,"mainField":"first_name"},"list":{"label":"Mentors","searchable":false,"sortable":false}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","name","county","state"],"editRelations":["classrooms","mentors"],"edit":[[{"name":"name","size":6},{"name":"county","size":6}],[{"name":"state","size":6}]]}}	object		
 268	model_def_application::classroom.classroom	{"uid":"application::classroom.classroom","collectionName":"classrooms","kind":"collectionType","info":{"name":"Classroom","description":""},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":false},"attributes":{"name":{"type":"string"},"school":{"model":"school","via":"classrooms"},"sessions":{"via":"classroom","collection":"session","isVirtual":true},"mentors":{"collection":"mentor","via":"classrooms","attribute":"mentor","column":"id","isVirtual":true},"students":{"via":"classroom","collection":"student","isVirtual":true},"code":{"type":"string","required":true},"grade":{"via":"classrooms","model":"grade"},"selections":{"via":"classroom","collection":"selection","isVirtual":true},"authorized_workspaces":{"via":"classroom","private":true,"collection":"authorized-workspace","isVirtual":true},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
 269	model_def_application::grade.grade	{"uid":"application::grade.grade","collectionName":"grades","kind":"collectionType","info":{"name":"grade"},"options":{"increments":true,"timestamps":["created_at","updated_at"]},"attributes":{"name":{"type":"string","required":true,"unique":true},"classrooms":{"via":"grade","collection":"classroom","isVirtual":true},"units":{"via":"grade","collection":"unit","isVirtual":true},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
 270	model_def_application::learning-component-types.learning-component-types	{"uid":"application::learning-component-types.learning-component-types","collectionName":"learning_component_types","kind":"collectionType","info":{"name":"Learning Component Types"},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":true},"attributes":{"name":{"type":"string"},"learning_components":{"collection":"learning-components","via":"learning_component_type","isVirtual":true},"published_at":{"type":"datetime","configurable":false,"writable":true,"visible":false},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
 271	model_def_application::learning-components.learning-components	{"uid":"application::learning-components.learning-components","collectionName":"learning_components","kind":"collectionType","info":{"name":"Learning Components"},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":true},"attributes":{"type":{"type":"string"},"activities":{"via":"learning_components","collection":"activity","dominant":true,"attribute":"activity","column":"id","isVirtual":true},"learning_component_type":{"via":"learning_components","model":"learning-component-types"},"published_at":{"type":"datetime","configurable":false,"writable":true,"visible":false},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
-289	plugin_documentation_config	{"restrictedAccess":false}	object		
-301	plugin_content_manager_configuration_content_types::application::school.school	{"uid":"application::school.school","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"name","defaultSortBy":"name","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"name":{"edit":{"label":"Name","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Name","searchable":true,"sortable":true}},"county":{"edit":{"label":"County","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"County","searchable":true,"sortable":true}},"state":{"edit":{"label":"State","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"State","searchable":true,"sortable":true}},"classrooms":{"edit":{"label":"Classrooms","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Classrooms","searchable":false,"sortable":false}},"mentors":{"edit":{"label":"Mentors","description":"","placeholder":"","visible":true,"editable":true,"mainField":"first_name"},"list":{"label":"Mentors","searchable":false,"sortable":false}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","name","county","state"],"editRelations":["classrooms","mentors"],"edit":[[{"name":"name","size":6},{"name":"county","size":6}],[{"name":"state","size":6}]]}}	object		
+266	model_def_application::block.block	{"uid":"application::block.block","collectionName":"blocks","kind":"collectionType","info":{"name":"Block","description":""},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":false},"attributes":{"name":{"type":"string","required":true,"unique":true},"description":{"type":"text"},"blocks_category":{"via":"blocks","model":"blocks-category"},"image_url":{"type":"string"},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
+267	model_def_application::blocks-category.blocks-category	{"uid":"application::blocks-category.blocks-category","collectionName":"blocks_categories","kind":"collectionType","info":{"name":"Blocks Category"},"options":{"increments":true,"timestamps":["created_at","updated_at"]},"attributes":{"name":{"type":"string"},"blocks":{"via":"blocks_category","collection":"block","isVirtual":true},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
 307	plugin_content_manager_configuration_content_types::strapi::user	{"uid":"strapi::user","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"firstname","defaultSortBy":"firstname","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"firstname":{"edit":{"label":"Firstname","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Firstname","searchable":true,"sortable":true}},"lastname":{"edit":{"label":"Lastname","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Lastname","searchable":true,"sortable":true}},"username":{"edit":{"label":"Username","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Username","searchable":true,"sortable":true}},"email":{"edit":{"label":"Email","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Email","searchable":true,"sortable":true}},"password":{"edit":{"label":"Password","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Password","searchable":true,"sortable":true}},"resetPasswordToken":{"edit":{"label":"ResetPasswordToken","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"ResetPasswordToken","searchable":true,"sortable":true}},"registrationToken":{"edit":{"label":"RegistrationToken","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"RegistrationToken","searchable":true,"sortable":true}},"isActive":{"edit":{"label":"IsActive","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"IsActive","searchable":true,"sortable":true}},"roles":{"edit":{"label":"Roles","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Roles","searchable":false,"sortable":false}},"blocked":{"edit":{"label":"Blocked","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Blocked","searchable":true,"sortable":true}},"preferedLanguage":{"edit":{"label":"PreferedLanguage","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"PreferedLanguage","searchable":true,"sortable":true}}},"layouts":{"list":["id","firstname","lastname","username"],"editRelations":["roles"],"edit":[[{"name":"firstname","size":6},{"name":"lastname","size":6}],[{"name":"username","size":6},{"name":"email","size":6}],[{"name":"password","size":6},{"name":"isActive","size":4}],[{"name":"blocked","size":4},{"name":"preferedLanguage","size":6}]]}}	object		
-273	model_def_application::mentor.mentor	{"uid":"application::mentor.mentor","collectionName":"mentors","kind":"collectionType","info":{"name":"Mentor"},"options":{"increments":true,"timestamps":["created_at","updated_at"]},"attributes":{"first_name":{"type":"string"},"last_name":{"type":"string"},"school":{"model":"school","via":"mentors"},"classrooms":{"via":"mentors","collection":"classroom","dominant":true,"attribute":"classroom","column":"id","isVirtual":true},"user":{"plugin":"users-permissions","model":"user"},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
+288	plugin_users-permissions_grant	{"email":{"enabled":true,"icon":"envelope"},"discord":{"enabled":false,"icon":"discord","key":"","secret":"","callback":"/auth/discord/callback","scope":["identify","email"]},"facebook":{"enabled":false,"icon":"facebook-square","key":"","secret":"","callback":"/auth/facebook/callback","scope":["email"]},"google":{"enabled":false,"icon":"google","key":"","secret":"","callback":"/auth/google/callback","scope":["email"]},"github":{"enabled":false,"icon":"github","key":"","secret":"","callback":"/auth/github/callback","scope":["user","user:email"]},"microsoft":{"enabled":false,"icon":"windows","key":"","secret":"","callback":"/auth/microsoft/callback","scope":["user.read"]},"twitter":{"enabled":false,"icon":"twitter","key":"","secret":"","callback":"/auth/twitter/callback"},"instagram":{"enabled":false,"icon":"instagram","key":"","secret":"","callback":"/auth/instagram/callback","scope":["user_profile"]},"vk":{"enabled":false,"icon":"vk","key":"","secret":"","callback":"/auth/vk/callback","scope":["email"]},"twitch":{"enabled":false,"icon":"twitch","key":"","secret":"","callback":"/auth/twitch/callback","scope":["user:read:email"]},"linkedin":{"enabled":false,"icon":"linkedin","key":"","secret":"","callback":"/auth/linkedin/callback","scope":["r_liteprofile","r_emailaddress"]},"cognito":{"enabled":false,"icon":"aws","key":"","secret":"","subdomain":"my.subdomain.com","callback":"/auth/cognito/callback","scope":["email","openid","profile"]},"reddit":{"enabled":false,"icon":"reddit","key":"","secret":"","state":true,"callback":"/auth/reddit/callback","scope":["identity"]},"auth0":{"enabled":false,"icon":"","key":"","secret":"","subdomain":"my-tenant.eu","callback":"/auth/auth0/callback","scope":["openid","email","profile"]},"cas":{"enabled":false,"icon":"book","key":"","secret":"","callback":"/auth/cas/callback","scope":["openid email"],"subdomain":"my.subdomain.com/cas"}}	object		
+295	plugin_content_manager_configuration_content_types::application::classroom.classroom	{"uid":"application::classroom.classroom","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"name","defaultSortBy":"name","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"name":{"edit":{"label":"Name","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Name","searchable":true,"sortable":true}},"school":{"edit":{"label":"School","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"School","searchable":true,"sortable":true}},"sessions":{"edit":{"label":"Sessions","description":"","placeholder":"","visible":true,"editable":true,"mainField":"id"},"list":{"label":"Sessions","searchable":false,"sortable":false}},"mentors":{"edit":{"label":"Mentors","description":"","placeholder":"","visible":true,"editable":true,"mainField":"first_name"},"list":{"label":"Mentors","searchable":false,"sortable":false}},"students":{"edit":{"label":"Students","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Students","searchable":false,"sortable":false}},"code":{"edit":{"label":"Code","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Code","searchable":true,"sortable":true}},"grade":{"edit":{"label":"Grade","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Grade","searchable":true,"sortable":true}},"selections":{"edit":{"label":"Selections","description":"","placeholder":"","visible":true,"editable":true,"mainField":"id"},"list":{"label":"Selections","searchable":false,"sortable":false}},"authorized_workspaces":{"edit":{"label":"Authorized_workspaces","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Authorized_workspaces","searchable":false,"sortable":false}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","name","school","sessions"],"editRelations":["school","sessions","mentors","students","grade","selections","authorized_workspaces"],"edit":[[{"name":"name","size":6},{"name":"code","size":6}]]}}	object		
+282	model_def_strapi::permission	{"uid":"strapi::permission","collectionName":"strapi_permission","kind":"collectionType","info":{"name":"Permission","description":""},"options":{"timestamps":["created_at","updated_at"]},"pluginOptions":{"content-manager":{"visible":false},"content-type-builder":{"visible":false}},"attributes":{"action":{"type":"string","minLength":1,"configurable":false,"required":true},"subject":{"type":"string","minLength":1,"configurable":false,"required":false},"properties":{"type":"json","configurable":false,"required":false,"default":{}},"conditions":{"type":"json","configurable":false,"required":false,"default":[]},"role":{"configurable":false,"model":"role","plugin":"admin"}}}	object	\N	\N
 274	model_def_application::save.save	{"uid":"application::save.save","collectionName":"saves","kind":"collectionType","info":{"name":"save","description":""},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":false},"attributes":{"activity":{"model":"activity"},"student":{"model":"student"},"workspace":{"type":"text","required":true},"replay":{"type":"json"},"session":{"via":"saves","model":"session"},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
 275	model_def_application::school.school	{"uid":"application::school.school","collectionName":"schools","kind":"collectionType","info":{"name":"School"},"options":{"increments":true,"timestamps":["created_at","updated_at"]},"attributes":{"name":{"type":"string"},"county":{"type":"string"},"state":{"type":"string"},"classrooms":{"via":"school","collection":"classroom","isVirtual":true},"mentors":{"via":"school","collection":"mentor","isVirtual":true},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
 276	model_def_application::selection.selection	{"uid":"application::selection.selection","collectionName":"selections","kind":"collectionType","info":{"name":"Selection"},"options":{"increments":true,"timestamps":["created_at","updated_at"]},"attributes":{"classroom":{"via":"selections","model":"classroom"},"lesson_module":{"model":"lesson-module"},"current":{"type":"boolean","default":true,"required":true},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
-278	model_def_application::student.student	{"uid":"application::student.student","collectionName":"students","kind":"collectionType","info":{"name":"Student"},"options":{"increments":true,"timestamps":["created_at","updated_at"]},"attributes":{"name":{"type":"string","regex":"^([A-Za-z]+)\\\\s*([A-Za-z]*)\\\\s+([A-Za-z])\\\\.$"},"character":{"type":"string"},"classroom":{"via":"students","model":"classroom"},"sessions":{"via":"students","collection":"session","dominant":true,"attribute":"session","column":"id","isVirtual":true},"enrolled":{"type":"boolean","default":true,"required":true},"last_logged_in":{"type":"datetime"},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
-282	model_def_strapi::permission	{"uid":"strapi::permission","collectionName":"strapi_permission","kind":"collectionType","info":{"name":"Permission","description":""},"options":{"timestamps":["created_at","updated_at"]},"pluginOptions":{"content-manager":{"visible":false},"content-type-builder":{"visible":false}},"attributes":{"action":{"type":"string","minLength":1,"configurable":false,"required":true},"subject":{"type":"string","minLength":1,"configurable":false,"required":false},"properties":{"type":"json","configurable":false,"required":false,"default":{}},"conditions":{"type":"json","configurable":false,"required":false,"default":[]},"role":{"configurable":false,"model":"role","plugin":"admin"}}}	object	\N	\N
-288	plugin_users-permissions_grant	{"email":{"enabled":true,"icon":"envelope"},"discord":{"enabled":false,"icon":"discord","key":"","secret":"","callback":"/auth/discord/callback","scope":["identify","email"]},"facebook":{"enabled":false,"icon":"facebook-square","key":"","secret":"","callback":"/auth/facebook/callback","scope":["email"]},"google":{"enabled":false,"icon":"google","key":"","secret":"","callback":"/auth/google/callback","scope":["email"]},"github":{"enabled":false,"icon":"github","key":"","secret":"","callback":"/auth/github/callback","scope":["user","user:email"]},"microsoft":{"enabled":false,"icon":"windows","key":"","secret":"","callback":"/auth/microsoft/callback","scope":["user.read"]},"twitter":{"enabled":false,"icon":"twitter","key":"","secret":"","callback":"/auth/twitter/callback"},"instagram":{"enabled":false,"icon":"instagram","key":"","secret":"","callback":"/auth/instagram/callback","scope":["user_profile"]},"vk":{"enabled":false,"icon":"vk","key":"","secret":"","callback":"/auth/vk/callback","scope":["email"]},"twitch":{"enabled":false,"icon":"twitch","key":"","secret":"","callback":"/auth/twitch/callback","scope":["user:read:email"]},"linkedin":{"enabled":false,"icon":"linkedin","key":"","secret":"","callback":"/auth/linkedin/callback","scope":["r_liteprofile","r_emailaddress"]},"cognito":{"enabled":false,"icon":"aws","key":"","secret":"","subdomain":"my.subdomain.com","callback":"/auth/cognito/callback","scope":["email","openid","profile"]},"reddit":{"enabled":false,"icon":"reddit","key":"","secret":"","state":true,"callback":"/auth/reddit/callback","scope":["identity"]},"auth0":{"enabled":false,"icon":"","key":"","secret":"","subdomain":"my-tenant.eu","callback":"/auth/auth0/callback","scope":["openid","email","profile"]},"cas":{"enabled":false,"icon":"book","key":"","secret":"","callback":"/auth/cas/callback","scope":["openid email"],"subdomain":"my.subdomain.com/cas"}}	object		
-295	plugin_content_manager_configuration_content_types::application::classroom.classroom	{"uid":"application::classroom.classroom","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"name","defaultSortBy":"name","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"name":{"edit":{"label":"Name","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Name","searchable":true,"sortable":true}},"school":{"edit":{"label":"School","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"School","searchable":true,"sortable":true}},"sessions":{"edit":{"label":"Sessions","description":"","placeholder":"","visible":true,"editable":true,"mainField":"id"},"list":{"label":"Sessions","searchable":false,"sortable":false}},"mentors":{"edit":{"label":"Mentors","description":"","placeholder":"","visible":true,"editable":true,"mainField":"first_name"},"list":{"label":"Mentors","searchable":false,"sortable":false}},"students":{"edit":{"label":"Students","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Students","searchable":false,"sortable":false}},"code":{"edit":{"label":"Code","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Code","searchable":true,"sortable":true}},"grade":{"edit":{"label":"Grade","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Grade","searchable":true,"sortable":true}},"selections":{"edit":{"label":"Selections","description":"","placeholder":"","visible":true,"editable":true,"mainField":"id"},"list":{"label":"Selections","searchable":false,"sortable":false}},"authorized_workspaces":{"edit":{"label":"Authorized_workspaces","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Authorized_workspaces","searchable":false,"sortable":false}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","name","school","sessions"],"editRelations":["school","sessions","mentors","students","grade","selections","authorized_workspaces"],"edit":[[{"name":"name","size":6},{"name":"code","size":6}]]}}	object		
-280	model_def_application::unit.unit	{"uid":"application::unit.unit","collectionName":"units","kind":"collectionType","info":{"name":"unit"},"options":{"increments":true,"timestamps":["created_at","updated_at"]},"attributes":{"grade":{"model":"grade","via":"units"},"name":{"type":"string","required":true},"standards_id":{"type":"string"},"standards_description":{"type":"text"},"number":{"type":"integer","required":true},"lesson_modules":{"via":"unit","collection":"lesson-module","isVirtual":true},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
-281	model_def_strapi::webhooks	{"uid":"strapi::webhooks","collectionName":"strapi_webhooks","info":{"name":"Strapi webhooks","description":""},"options":{"timestamps":false},"pluginOptions":{"content-manager":{"visible":false},"content-type-builder":{"visible":false}},"attributes":{"name":{"type":"string"},"url":{"type":"text"},"headers":{"type":"json"},"events":{"type":"json"},"enabled":{"type":"boolean"}}}	object	\N	\N
-283	model_def_strapi::role	{"uid":"strapi::role","collectionName":"strapi_role","kind":"collectionType","info":{"name":"Role","description":""},"options":{"timestamps":["created_at","updated_at"]},"pluginOptions":{"content-manager":{"visible":false},"content-type-builder":{"visible":false}},"attributes":{"name":{"type":"string","minLength":1,"unique":true,"configurable":false,"required":true},"code":{"type":"string","minLength":1,"unique":true,"configurable":false,"required":true},"description":{"type":"string","configurable":false},"users":{"configurable":false,"collection":"user","via":"roles","plugin":"admin","attribute":"user","column":"id","isVirtual":true},"permissions":{"configurable":false,"plugin":"admin","collection":"permission","via":"role","isVirtual":true}}}	object	\N	\N
 294	plugin_content_manager_configuration_content_types::application::grade.grade	{"uid":"application::grade.grade","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"name","defaultSortBy":"name","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"name":{"edit":{"label":"Name","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Name","searchable":true,"sortable":true}},"classrooms":{"edit":{"label":"Classrooms","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Classrooms","searchable":false,"sortable":false}},"units":{"edit":{"label":"Units","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Units","searchable":false,"sortable":false}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","name","classrooms","units"],"editRelations":["classrooms","units"],"edit":[[{"name":"name","size":6}]]}}	object		
 290	plugin_content_manager_configuration_content_types::application::lesson-module.lesson-module	{"uid":"application::lesson-module.lesson-module","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"name","defaultSortBy":"name","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"number":{"edit":{"label":"Number","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Number","searchable":true,"sortable":true}},"name":{"edit":{"label":"Name","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Name","searchable":true,"sortable":true}},"expectations":{"edit":{"label":"Expectations","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Expectations","searchable":true,"sortable":true}},"activities":{"edit":{"label":"Activities","description":"","placeholder":"","visible":true,"editable":true,"mainField":"StandardS"},"list":{"label":"Activities","searchable":false,"sortable":false}},"unit":{"edit":{"label":"Unit","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Unit","searchable":true,"sortable":true}},"standards":{"edit":{"label":"Standards","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Standards","searchable":true,"sortable":true}},"link":{"edit":{"label":"Link","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Link","searchable":true,"sortable":true}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","number","name","expectations"],"editRelations":["activities","unit"],"edit":[[{"name":"number","size":4},{"name":"name","size":6}],[{"name":"expectations","size":6},{"name":"standards","size":6}],[{"name":"link","size":6}]]}}	object		
 292	plugin_content_manager_configuration_content_types::application::learning-components.learning-components	{"uid":"application::learning-components.learning-components","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"type","defaultSortBy":"type","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"type":{"edit":{"label":"Type","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Type","searchable":true,"sortable":true}},"activities":{"edit":{"label":"Activities","description":"","placeholder":"","visible":true,"editable":true,"mainField":"StandardS"},"list":{"label":"Activities","searchable":false,"sortable":false}},"learning_component_type":{"edit":{"label":"Learning_component_type","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Learning_component_type","searchable":true,"sortable":true}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","type","activities","learning_component_type"],"editRelations":["activities","learning_component_type"],"edit":[[{"name":"type","size":6}]]}}	object		
 296	plugin_content_manager_configuration_content_types::application::blocks-category.blocks-category	{"uid":"application::blocks-category.blocks-category","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"name","defaultSortBy":"name","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"name":{"edit":{"label":"Name","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Name","searchable":true,"sortable":true}},"blocks":{"edit":{"label":"Blocks","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Blocks","searchable":false,"sortable":false}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","name","blocks","created_at"],"editRelations":["blocks"],"edit":[[{"name":"name","size":6}]]}}	object		
-286	model_def_plugins::users-permissions.role	{"uid":"plugins::users-permissions.role","collectionName":"users-permissions_role","kind":"collectionType","info":{"name":"role","description":""},"options":{"timestamps":false},"pluginOptions":{"content-manager":{"visible":false}},"attributes":{"name":{"type":"string","minLength":3,"required":true,"configurable":false},"description":{"type":"string","configurable":false},"type":{"type":"string","unique":true,"configurable":false},"permissions":{"collection":"permission","via":"role","plugin":"users-permissions","configurable":false,"isVirtual":true},"users":{"collection":"user","via":"role","configurable":false,"plugin":"users-permissions","isVirtual":true},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
+281	model_def_strapi::webhooks	{"uid":"strapi::webhooks","collectionName":"strapi_webhooks","info":{"name":"Strapi webhooks","description":""},"options":{"timestamps":false},"pluginOptions":{"content-manager":{"visible":false},"content-type-builder":{"visible":false}},"attributes":{"name":{"type":"string"},"url":{"type":"text"},"headers":{"type":"json"},"events":{"type":"json"},"enabled":{"type":"boolean"}}}	object	\N	\N
+283	model_def_strapi::role	{"uid":"strapi::role","collectionName":"strapi_role","kind":"collectionType","info":{"name":"Role","description":""},"options":{"timestamps":["created_at","updated_at"]},"pluginOptions":{"content-manager":{"visible":false},"content-type-builder":{"visible":false}},"attributes":{"name":{"type":"string","minLength":1,"unique":true,"configurable":false,"required":true},"code":{"type":"string","minLength":1,"unique":true,"configurable":false,"required":true},"description":{"type":"string","configurable":false},"users":{"configurable":false,"collection":"user","via":"roles","plugin":"admin","attribute":"user","column":"id","isVirtual":true},"permissions":{"configurable":false,"plugin":"admin","collection":"permission","via":"role","isVirtual":true}}}	object	\N	\N
 305	plugin_content_manager_configuration_content_types::plugins::users-permissions.role	{"uid":"plugins::users-permissions.role","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"name","defaultSortBy":"name","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"name":{"edit":{"label":"Name","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Name","searchable":true,"sortable":true}},"description":{"edit":{"label":"Description","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Description","searchable":true,"sortable":true}},"type":{"edit":{"label":"Type","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Type","searchable":true,"sortable":true}},"permissions":{"edit":{"label":"Permissions","description":"","placeholder":"","visible":true,"editable":true,"mainField":"type"},"list":{"label":"Permissions","searchable":false,"sortable":false}},"users":{"edit":{"label":"Users","description":"","placeholder":"","visible":true,"editable":true,"mainField":"username"},"list":{"label":"Users","searchable":false,"sortable":false}}},"layouts":{"list":["id","name","description","type"],"editRelations":["permissions","users"],"edit":[[{"name":"name","size":6},{"name":"description","size":6}],[{"name":"type","size":6}]]}}	object		
 308	plugin_content_manager_configuration_content_types::strapi::permission	{"uid":"strapi::permission","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"action","defaultSortBy":"action","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"action":{"edit":{"label":"Action","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Action","searchable":true,"sortable":true}},"subject":{"edit":{"label":"Subject","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Subject","searchable":true,"sortable":true}},"properties":{"edit":{"label":"Properties","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Properties","searchable":false,"sortable":false}},"conditions":{"edit":{"label":"Conditions","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Conditions","searchable":false,"sortable":false}},"role":{"edit":{"label":"Role","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Role","searchable":true,"sortable":true}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","action","subject","role"],"editRelations":["role"],"edit":[[{"name":"action","size":6},{"name":"subject","size":6}],[{"name":"properties","size":12}],[{"name":"conditions","size":12}]]}}	object		
 291	plugin_content_manager_configuration_content_types::application::mentor.mentor	{"uid":"application::mentor.mentor","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"first_name","defaultSortBy":"first_name","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"first_name":{"edit":{"label":"First_name","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"First_name","searchable":true,"sortable":true}},"last_name":{"edit":{"label":"Last_name","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Last_name","searchable":true,"sortable":true}},"school":{"edit":{"label":"School","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"School","searchable":true,"sortable":true}},"classrooms":{"edit":{"label":"Classrooms","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Classrooms","searchable":false,"sortable":false}},"user":{"edit":{"label":"User","description":"","placeholder":"","visible":true,"editable":true,"mainField":"username"},"list":{"label":"User","searchable":true,"sortable":true}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","first_name","last_name","school"],"editRelations":["school","classrooms","user"],"edit":[[{"name":"first_name","size":6},{"name":"last_name","size":6}]]}}	object		
@@ -2836,7 +2914,6 @@ COPY public.core_store (id, key, value, type, environment, tag) FROM stdin;
 298	plugin_content_manager_configuration_content_types::application::activity.activity	{"uid":"application::activity.activity","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"StandardS","defaultSortBy":"StandardS","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"lesson_module":{"edit":{"label":"Lesson_module","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Lesson_module","searchable":true,"sortable":true}},"number":{"edit":{"label":"Number","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Number","searchable":true,"sortable":true}},"template":{"edit":{"label":"Template","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Template","searchable":true,"sortable":true}},"blocks":{"edit":{"label":"Blocks","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Blocks","searchable":false,"sortable":false}},"description":{"edit":{"label":"Description","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Description","searchable":true,"sortable":true}},"StandardS":{"edit":{"label":"StandardS","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"StandardS","searchable":true,"sortable":true}},"images":{"edit":{"label":"Images","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Images","searchable":true,"sortable":true}},"link":{"edit":{"label":"Link","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Link","searchable":true,"sortable":true}},"learning_components":{"edit":{"label":"Learning_components","description":"","placeholder":"","visible":true,"editable":true,"mainField":"type"},"list":{"label":"Learning_components","searchable":false,"sortable":false}},"activity_template":{"edit":{"label":"Activity_template","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Activity_template","searchable":true,"sortable":true}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","lesson_module","number","template"],"editRelations":["lesson_module","blocks","learning_components"],"edit":[[{"name":"number","size":4},{"name":"template","size":6}],[{"name":"description","size":6},{"name":"StandardS","size":6}],[{"name":"images","size":6},{"name":"link","size":6}],[{"name":"activity_template","size":6}]]}}	object		
 299	plugin_content_manager_configuration_content_types::application::authorized-workspace.authorized-workspace	{"uid":"application::authorized-workspace.authorized-workspace","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"name","defaultSortBy":"name","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"name":{"edit":{"label":"Name","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Name","searchable":true,"sortable":true}},"description":{"edit":{"label":"Description","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Description","searchable":true,"sortable":true}},"template":{"edit":{"label":"Template","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Template","searchable":true,"sortable":true}},"blocks":{"edit":{"label":"Blocks","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Blocks","searchable":false,"sortable":false}},"classroom":{"edit":{"label":"Classroom","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Classroom","searchable":true,"sortable":true}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","name","description","template"],"editRelations":["blocks","classroom"],"edit":[[{"name":"name","size":6},{"name":"description","size":6}],[{"name":"template","size":6}]]}}	object		
 310	plugin_content_manager_configuration_content_types::application::submission.submission	{"uid":"application::submission.submission","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"status","defaultSortBy":"status","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"status":{"edit":{"label":"Status","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Status","searchable":true,"sortable":true}},"workspace":{"edit":{"label":"Workspace","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Workspace","searchable":true,"sortable":true}},"success":{"edit":{"label":"Success","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Success","searchable":true,"sortable":true}},"hex":{"edit":{"label":"Hex","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Hex","searchable":true,"sortable":true}},"stdout":{"edit":{"label":"Stdout","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Stdout","searchable":true,"sortable":true}},"stderr":{"edit":{"label":"Stderr","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Stderr","searchable":true,"sortable":true}},"board":{"edit":{"label":"Board","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Board","searchable":true,"sortable":true}},"sketch":{"edit":{"label":"Sketch","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Sketch","searchable":true,"sortable":true}},"sandbox":{"edit":{"label":"Sandbox","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Sandbox","searchable":true,"sortable":true}},"session":{"edit":{"label":"Session","description":"","placeholder":"","visible":true,"editable":true,"mainField":"id"},"list":{"label":"Session","searchable":true,"sortable":true}},"activity":{"edit":{"label":"Activity","description":"","placeholder":"","visible":true,"editable":true,"mainField":"StandardS"},"list":{"label":"Activity","searchable":true,"sortable":true}},"job_id":{"edit":{"label":"Job_id","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Job_id","searchable":true,"sortable":true}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","status","workspace","success"],"editRelations":["session","activity"],"edit":[[{"name":"status","size":6},{"name":"workspace","size":6}],[{"name":"success","size":4},{"name":"hex","size":6}],[{"name":"stdout","size":6},{"name":"stderr","size":6}],[{"name":"board","size":6},{"name":"sketch","size":6}],[{"name":"sandbox","size":4},{"name":"job_id","size":4}]]}}	object		
-264	model_def_application::activity.activity	{"uid":"application::activity.activity","collectionName":"activities","kind":"collectionType","info":{"name":"Activity","description":""},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":false},"attributes":{"lesson_module":{"via":"activities","model":"lesson-module"},"number":{"type":"biginteger","required":true},"template":{"type":"text","required":true},"blocks":{"collection":"block","attribute":"block","column":"id","isVirtual":true},"description":{"type":"text"},"StandardS":{"type":"string"},"images":{"type":"text"},"link":{"type":"string","required":false},"learning_components":{"via":"activities","collection":"learning-components","attribute":"learning-component","column":"id","isVirtual":true},"activity_template":{"type":"text","required":false},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
 300	plugin_content_manager_configuration_content_types::application::save.save	{"uid":"application::save.save","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"id","defaultSortBy":"id","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"activity":{"edit":{"label":"Activity","description":"","placeholder":"","visible":true,"editable":true,"mainField":"StandardS"},"list":{"label":"Activity","searchable":true,"sortable":true}},"student":{"edit":{"label":"Student","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Student","searchable":true,"sortable":true}},"workspace":{"edit":{"label":"Workspace","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Workspace","searchable":true,"sortable":true}},"replay":{"edit":{"label":"Replay","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Replay","searchable":false,"sortable":false}},"session":{"edit":{"label":"Session","description":"","placeholder":"","visible":true,"editable":true,"mainField":"id"},"list":{"label":"Session","searchable":true,"sortable":true}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","activity","student","workspace"],"editRelations":["activity","student","session"],"edit":[[{"name":"workspace","size":6}],[{"name":"replay","size":12}]]}}	object		
 302	plugin_content_manager_configuration_content_types::application::student.student	{"uid":"application::student.student","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"name","defaultSortBy":"name","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"name":{"edit":{"label":"Name","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Name","searchable":true,"sortable":true}},"character":{"edit":{"label":"Character","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Character","searchable":true,"sortable":true}},"classroom":{"edit":{"label":"Classroom","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Classroom","searchable":true,"sortable":true}},"sessions":{"edit":{"label":"Sessions","description":"","placeholder":"","visible":true,"editable":true,"mainField":"id"},"list":{"label":"Sessions","searchable":false,"sortable":false}},"enrolled":{"edit":{"label":"Enrolled","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Enrolled","searchable":true,"sortable":true}},"last_logged_in":{"edit":{"label":"Last_logged_in","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Last_logged_in","searchable":true,"sortable":true}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","name","character","classroom"],"editRelations":["classroom","sessions"],"edit":[[{"name":"name","size":6},{"name":"character","size":6}],[{"name":"enrolled","size":4},{"name":"last_logged_in","size":6}]]}}	object		
 303	plugin_content_manager_configuration_content_types::application::session.session	{"uid":"application::session.session","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"id","defaultSortBy":"id","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"classroom":{"edit":{"label":"Classroom","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Classroom","searchable":true,"sortable":true}},"students":{"edit":{"label":"Students","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Students","searchable":false,"sortable":false}},"submissions":{"edit":{"label":"Submissions","description":"","placeholder":"","visible":true,"editable":true,"mainField":"status"},"list":{"label":"Submissions","searchable":false,"sortable":false}},"saves":{"edit":{"label":"Saves","description":"","placeholder":"","visible":true,"editable":true,"mainField":"id"},"list":{"label":"Saves","searchable":false,"sortable":false}},"unit":{"edit":{"label":"Unit","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Unit","searchable":true,"sortable":true}},"grade":{"edit":{"label":"Grade","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Grade","searchable":true,"sortable":true}},"lesson_module":{"edit":{"label":"Lesson_module","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Lesson_module","searchable":true,"sortable":true}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","classroom","students","submissions"],"editRelations":["classroom","students","submissions","saves","unit","grade","lesson_module"],"edit":[]}}	object		
@@ -2845,14 +2922,24 @@ COPY public.core_store (id, key, value, type, environment, tag) FROM stdin;
 309	plugin_content_manager_configuration_content_types::application::unit.unit	{"uid":"application::unit.unit","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"name","defaultSortBy":"name","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"grade":{"edit":{"label":"Grade","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Grade","searchable":true,"sortable":true}},"name":{"edit":{"label":"Name","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Name","searchable":true,"sortable":true}},"standards_id":{"edit":{"label":"Standards_id","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Standards_id","searchable":true,"sortable":true}},"standards_description":{"edit":{"label":"Standards_description","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Standards_description","searchable":true,"sortable":true}},"number":{"edit":{"label":"Number","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Number","searchable":true,"sortable":true}},"lesson_modules":{"edit":{"label":"Lesson_modules","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Lesson_modules","searchable":false,"sortable":false}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","grade","name","standards_id"],"editRelations":["grade","lesson_modules"],"edit":[[{"name":"name","size":6},{"name":"standards_id","size":6}],[{"name":"standards_description","size":6},{"name":"number","size":4}]]}}	object		
 314	plugin_users-permissions_advanced	{"unique_email":true,"allow_register":true,"email_confirmation":false,"email_reset_password":null,"email_confirmation_redirection":null,"default_role":"authenticated"}	object		
 312	plugin_content_manager_configuration_content_types::strapi::role	{"uid":"strapi::role","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"name","defaultSortBy":"name","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"name":{"edit":{"label":"Name","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Name","searchable":true,"sortable":true}},"code":{"edit":{"label":"Code","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Code","searchable":true,"sortable":true}},"description":{"edit":{"label":"Description","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Description","searchable":true,"sortable":true}},"users":{"edit":{"label":"Users","description":"","placeholder":"","visible":true,"editable":true,"mainField":"firstname"},"list":{"label":"Users","searchable":false,"sortable":false}},"permissions":{"edit":{"label":"Permissions","description":"","placeholder":"","visible":true,"editable":true,"mainField":"action"},"list":{"label":"Permissions","searchable":false,"sortable":false}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","name","code","description"],"editRelations":["users","permissions"],"edit":[[{"name":"name","size":6},{"name":"code","size":6}],[{"name":"description","size":6}]]}}	object		
-263	model_def_strapi::core-store	{"uid":"strapi::core-store","collectionName":"core_store","info":{"name":"core_store","description":""},"options":{"timestamps":false},"pluginOptions":{"content-manager":{"visible":false},"content-type-builder":{"visible":false}},"attributes":{"key":{"type":"string"},"value":{"type":"text"},"type":{"type":"string"},"environment":{"type":"string"},"tag":{"type":"string"}}}	object	\N	\N
-272	model_def_application::lesson-module.lesson-module	{"uid":"application::lesson-module.lesson-module","collectionName":"lesson_modules","kind":"collectionType","info":{"name":"lesson Module","description":""},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":false},"attributes":{"number":{"type":"decimal","required":true},"name":{"type":"string","required":true},"expectations":{"type":"text"},"activities":{"via":"lesson_module","collection":"activity","isVirtual":true},"unit":{"model":"unit","via":"lesson_modules"},"standards":{"type":"string","unique":true},"link":{"type":"string"},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
-277	model_def_application::session.session	{"uid":"application::session.session","collectionName":"sessions","kind":"collectionType","info":{"name":"Session","description":""},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":false},"attributes":{"classroom":{"via":"sessions","model":"classroom"},"students":{"via":"sessions","collection":"student","attribute":"student","column":"id","isVirtual":true},"submissions":{"via":"session","collection":"submission","isVirtual":true},"saves":{"collection":"save","via":"session","isVirtual":true},"unit":{"model":"unit"},"grade":{"model":"grade"},"lesson_module":{"model":"lesson-module"},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
-279	model_def_application::submission.submission	{"uid":"application::submission.submission","collectionName":"submissions","kind":"collectionType","info":{"name":"Submission"},"options":{"increments":true,"timestamps":["created_at","updated_at"]},"attributes":{"status":{"type":"string","default":"WAITING","required":true},"workspace":{"type":"text","required":true},"success":{"type":"boolean","required":false},"hex":{"type":"text"},"stdout":{"type":"text"},"stderr":{"type":"text"},"board":{"type":"string","required":true},"sketch":{"type":"text","required":true},"sandbox":{"type":"boolean","default":false,"required":true},"session":{"via":"submissions","model":"session"},"activity":{"model":"activity"},"job_id":{"type":"biginteger"},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
-284	model_def_strapi::user	{"uid":"strapi::user","collectionName":"strapi_administrator","kind":"collectionType","info":{"name":"User","description":""},"options":{"timestamps":false},"pluginOptions":{"content-manager":{"visible":false},"content-type-builder":{"visible":false}},"attributes":{"firstname":{"type":"string","unique":false,"minLength":1,"configurable":false,"required":false},"lastname":{"type":"string","unique":false,"minLength":1,"configurable":false,"required":false},"username":{"type":"string","unique":false,"configurable":false,"required":false},"email":{"type":"email","minLength":6,"configurable":false,"required":true,"unique":true,"private":true},"password":{"type":"password","minLength":6,"configurable":false,"required":false,"private":true},"resetPasswordToken":{"type":"string","configurable":false,"private":true},"registrationToken":{"type":"string","configurable":false,"private":true},"isActive":{"type":"boolean","default":false,"configurable":false,"private":true},"roles":{"collection":"role","collectionName":"strapi_users_roles","via":"users","dominant":true,"plugin":"admin","configurable":false,"private":true,"attribute":"role","column":"id","isVirtual":true},"blocked":{"type":"boolean","default":false,"configurable":false,"private":true},"preferedLanguage":{"type":"string","configurable":false,"required":false}}}	object	\N	\N
 285	model_def_plugins::users-permissions.permission	{"uid":"plugins::users-permissions.permission","collectionName":"users-permissions_permission","kind":"collectionType","info":{"name":"permission","description":""},"options":{"timestamps":false},"pluginOptions":{"content-manager":{"visible":false}},"attributes":{"type":{"type":"string","required":true,"configurable":false},"controller":{"type":"string","required":true,"configurable":false},"action":{"type":"string","required":true,"configurable":false},"enabled":{"type":"boolean","required":true,"configurable":false},"policy":{"type":"string","configurable":false},"role":{"model":"role","via":"permissions","plugin":"users-permissions","configurable":false},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
+286	model_def_plugins::users-permissions.role	{"uid":"plugins::users-permissions.role","collectionName":"users-permissions_role","kind":"collectionType","info":{"name":"role","description":""},"options":{"timestamps":false},"pluginOptions":{"content-manager":{"visible":false}},"attributes":{"name":{"type":"string","minLength":3,"required":true,"configurable":false},"description":{"type":"string","configurable":false},"type":{"type":"string","unique":true,"configurable":false},"permissions":{"collection":"permission","via":"role","plugin":"users-permissions","configurable":false,"isVirtual":true},"users":{"collection":"user","via":"role","configurable":false,"plugin":"users-permissions","isVirtual":true},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
 287	model_def_plugins::users-permissions.user	{"uid":"plugins::users-permissions.user","collectionName":"users-permissions_user","kind":"collectionType","info":{"name":"user","description":""},"options":{"draftAndPublish":false,"timestamps":["created_at","updated_at"]},"attributes":{"username":{"type":"string","minLength":3,"unique":true,"configurable":false,"required":true},"email":{"type":"email","minLength":6,"configurable":false,"required":true},"provider":{"type":"string","configurable":false},"password":{"type":"password","minLength":6,"configurable":false,"private":true},"resetPasswordToken":{"type":"string","configurable":false,"private":true},"confirmationToken":{"type":"string","configurable":false,"private":true},"confirmed":{"type":"boolean","default":false,"configurable":false},"blocked":{"type":"boolean","default":false,"configurable":false},"role":{"model":"role","via":"users","plugin":"users-permissions","configurable":false},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
 315	core_admin_auth	{"providers":{"autoRegister":false,"defaultRole":null}}	object		
+277	model_def_application::session.session	{"uid":"application::session.session","collectionName":"sessions","kind":"collectionType","info":{"name":"Session","description":""},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":false},"attributes":{"classroom":{"via":"sessions","model":"classroom"},"students":{"via":"sessions","collection":"student","attribute":"student","column":"id","isVirtual":true},"submissions":{"via":"session","collection":"submission","isVirtual":true},"saves":{"collection":"save","via":"session","isVirtual":true},"unit":{"model":"unit"},"grade":{"model":"grade"},"lesson_module":{"model":"lesson-module"},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
+279	model_def_application::submission.submission	{"uid":"application::submission.submission","collectionName":"submissions","kind":"collectionType","info":{"name":"Submission"},"options":{"increments":true,"timestamps":["created_at","updated_at"]},"attributes":{"status":{"type":"string","default":"WAITING","required":true},"workspace":{"type":"text","required":true},"success":{"type":"boolean","required":false},"hex":{"type":"text"},"stdout":{"type":"text"},"stderr":{"type":"text"},"board":{"type":"string","required":true},"sketch":{"type":"text","required":true},"sandbox":{"type":"boolean","default":false,"required":true},"session":{"via":"submissions","model":"session"},"activity":{"model":"activity"},"job_id":{"type":"biginteger"},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
+263	model_def_strapi::core-store	{"uid":"strapi::core-store","collectionName":"core_store","info":{"name":"core_store","description":""},"options":{"timestamps":false},"pluginOptions":{"content-manager":{"visible":false},"content-type-builder":{"visible":false}},"attributes":{"key":{"type":"string"},"value":{"type":"text"},"type":{"type":"string"},"environment":{"type":"string"},"tag":{"type":"string"}}}	object	\N	\N
+317	model_def_application::profile.profile	{"uid":"application::profile.profile","collectionName":"profile","kind":"collectionType","info":{"name":"Profile","description":""},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":true},"attributes":{"biography":{"type":"text"},"student":{"unique":true,"model":"student"},"user":{"unique":true,"plugin":"users-permissions","model":"user"},"type":{"type":"enumeration","enum":["student","user"],"required":true},"published_at":{"type":"datetime","configurable":false,"writable":true,"visible":false},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
+278	model_def_application::student.student	{"uid":"application::student.student","collectionName":"students","kind":"collectionType","info":{"name":"Student"},"options":{"increments":true,"timestamps":["created_at","updated_at"]},"attributes":{"name":{"type":"string","regex":"^([A-Za-z]+)\\\\s*([A-Za-z]*)\\\\s+([A-Za-z])\\\\.$"},"character":{"type":"string"},"classroom":{"via":"students","model":"classroom"},"sessions":{"via":"students","collection":"session","dominant":true,"attribute":"session","column":"id","isVirtual":true},"enrolled":{"type":"boolean","default":true,"required":true},"last_logged_in":{"type":"datetime"},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
+280	model_def_application::unit.unit	{"uid":"application::unit.unit","collectionName":"units","kind":"collectionType","info":{"name":"unit"},"options":{"increments":true,"timestamps":["created_at","updated_at"]},"attributes":{"grade":{"model":"grade","via":"units"},"name":{"type":"string","required":true},"standards_id":{"type":"string"},"standards_description":{"type":"text"},"number":{"type":"integer","required":true},"lesson_modules":{"via":"unit","collection":"lesson-module","isVirtual":true},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
+265	model_def_application::authorized-workspace.authorized-workspace	{"uid":"application::authorized-workspace.authorized-workspace","collectionName":"authorized_workspaces","kind":"collectionType","info":{"name":"AuthorizedWorkspace","description":""},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":true},"attributes":{"name":{"type":"string","required":true},"description":{"type":"text"},"template":{"type":"text","required":true},"blocks":{"private":true,"collection":"block","attribute":"block","column":"id","isVirtual":true},"classroom":{"private":true,"via":"authorized_workspaces","model":"classroom"},"published_at":{"type":"datetime","configurable":false,"writable":true,"visible":false},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
+316	model_def_application::badge.badge	{"uid":"application::badge.badge","collectionName":"badges","kind":"collectionType","info":{"name":"Badge"},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":true},"attributes":{"Name":{"type":"string"},"Description":{"type":"string"},"Progress":{"type":"decimal"},"published_at":{"type":"datetime","configurable":false,"writable":true,"visible":false},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
+273	model_def_application::mentor.mentor	{"uid":"application::mentor.mentor","collectionName":"mentors","kind":"collectionType","info":{"name":"Mentor"},"options":{"increments":true,"timestamps":["created_at","updated_at"]},"attributes":{"first_name":{"type":"string"},"last_name":{"type":"string"},"school":{"model":"school","via":"mentors"},"classrooms":{"via":"mentors","collection":"classroom","dominant":true,"attribute":"classroom","column":"id","isVirtual":true},"user":{"plugin":"users-permissions","model":"user"},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
+318	plugin_content_manager_configuration_content_types::application::badge.badge	{"uid":"application::badge.badge","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"Name","defaultSortBy":"Name","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"Name":{"edit":{"label":"Name","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Name","searchable":true,"sortable":true}},"Description":{"edit":{"label":"Description","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Description","searchable":true,"sortable":true}},"Progress":{"edit":{"label":"Progress","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Progress","searchable":true,"sortable":true}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","Name","Description","Progress"],"editRelations":[],"edit":[[{"name":"Name","size":6},{"name":"Description","size":6}],[{"name":"Progress","size":4}]]}}	object		
+319	plugin_content_manager_configuration_content_types::application::profile.profile	{"uid":"application::profile.profile","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"id","defaultSortBy":"id","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"biography":{"edit":{"label":"Biography","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Biography","searchable":true,"sortable":true}},"student":{"edit":{"label":"Student","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Student","searchable":true,"sortable":true}},"user":{"edit":{"label":"User","description":"","placeholder":"","visible":true,"editable":true,"mainField":"username"},"list":{"label":"User","searchable":true,"sortable":true}},"type":{"edit":{"label":"Type","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Type","searchable":true,"sortable":true}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","biography","student","user"],"editRelations":["student","user"],"edit":[[{"name":"biography","size":6},{"name":"type","size":6}]]}}	object		
+264	model_def_application::activity.activity	{"uid":"application::activity.activity","collectionName":"activities","kind":"collectionType","info":{"name":"Activity","description":""},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":false},"attributes":{"lesson_module":{"via":"activities","model":"lesson-module"},"number":{"type":"biginteger","required":true},"template":{"type":"text","required":true},"blocks":{"collection":"block","attribute":"block","column":"id","isVirtual":true},"description":{"type":"text"},"StandardS":{"type":"string"},"images":{"type":"text"},"link":{"type":"string","required":false},"learning_components":{"via":"activities","collection":"learning-components","attribute":"learning-component","column":"id","isVirtual":true},"activity_template":{"type":"text","required":false},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
+272	model_def_application::lesson-module.lesson-module	{"uid":"application::lesson-module.lesson-module","collectionName":"lesson_modules","kind":"collectionType","info":{"name":"lesson Module","description":""},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":false},"attributes":{"number":{"type":"decimal","required":true},"name":{"type":"string","required":true},"expectations":{"type":"text"},"activities":{"via":"lesson_module","collection":"activity","isVirtual":true},"unit":{"model":"unit","via":"lesson_modules"},"standards":{"type":"string","unique":true},"link":{"type":"string"},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"visible":false,"private":true}}}	object	\N	\N
+284	model_def_strapi::user	{"uid":"strapi::user","collectionName":"strapi_administrator","kind":"collectionType","info":{"name":"User","description":""},"options":{"timestamps":false},"pluginOptions":{"content-manager":{"visible":false},"content-type-builder":{"visible":false}},"attributes":{"firstname":{"type":"string","unique":false,"minLength":1,"configurable":false,"required":false},"lastname":{"type":"string","unique":false,"minLength":1,"configurable":false,"required":false},"username":{"type":"string","unique":false,"configurable":false,"required":false},"email":{"type":"email","minLength":6,"configurable":false,"required":true,"unique":true,"private":true},"password":{"type":"password","minLength":6,"configurable":false,"required":false,"private":true},"resetPasswordToken":{"type":"string","configurable":false,"private":true},"registrationToken":{"type":"string","configurable":false,"private":true},"isActive":{"type":"boolean","default":false,"configurable":false,"private":true},"roles":{"collection":"role","collectionName":"strapi_users_roles","via":"users","dominant":true,"plugin":"admin","configurable":false,"private":true,"attribute":"role","column":"id","isVirtual":true},"blocked":{"type":"boolean","default":false,"configurable":false,"private":true},"preferedLanguage":{"type":"string","configurable":false,"required":false}}}	object	\N	\N
 \.
 
 
@@ -2963,6 +3050,15 @@ COPY public.objectives (id, activity, description, objective_type, created_at, u
 2	\N	The students will be identify conductors and insulators in the real world by predicting whether a given object will complete a circuit and testing their hypotheses.	1	2020-07-24 16:54:11.457+00	2021-08-01 17:54:54.1+00	\N	\N
 3	\N	The students will identify conductors and insulators in the real world by predicting whether a given object will complete a circuit and testing their hypotheses.	1	2020-07-24 16:56:41.649+00	2021-08-01 17:54:54.139+00	\N	\N
 4	\N	Students will create a circuit and complete it by finding conductors and insulators in the classroom.	2	2020-07-24 16:57:04.842+00	2021-08-01 17:54:54.139+00	\N	\N
+\.
+
+
+--
+-- Data for Name: profile; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.profile (id, biography, student, "user", type, published_at, created_by, updated_by, created_at, updated_at) FROM stdin;
+1	\N	55	\N	student	2023-11-22 00:52:49.169+00	\N	\N	2023-11-22 00:52:49.174+00	2023-11-22 00:52:49.178+00
 \.
 
 
@@ -3133,27 +3229,37 @@ COPY public.strapi_permission (id, action, subject, fields, conditions, role, cr
 4365	plugins::documentation.read	\N	\N	[]	1	2023-10-19 15:56:44.562+00	2023-10-19 15:56:44.576+00	{}
 4366	plugins::documentation.settings.update	\N	\N	[]	1	2023-10-19 15:56:44.562+00	2023-10-19 15:56:44.576+00	{}
 4367	plugins::documentation.settings.regenerate	\N	\N	[]	1	2023-10-19 15:56:44.562+00	2023-10-19 15:56:44.58+00	{}
-4368	plugins::content-manager.explorer.delete	application::blocks-category.blocks-category	\N	[]	1	2023-10-20 05:43:42.105+00	2023-10-20 05:43:42.125+00	{}
-4369	plugins::content-manager.explorer.delete	application::block.block	\N	[]	1	2023-10-20 05:43:42.105+00	2023-10-20 05:43:42.125+00	{}
-4370	plugins::content-manager.explorer.delete	application::authorized-workspace.authorized-workspace	\N	[]	1	2023-10-20 05:43:42.105+00	2023-10-20 05:43:42.125+00	{}
-4371	plugins::content-manager.explorer.delete	application::activity.activity	\N	[]	1	2023-10-20 05:43:42.105+00	2023-10-20 05:43:42.125+00	{}
-4372	plugins::content-manager.explorer.delete	application::classroom.classroom	\N	[]	1	2023-10-20 05:43:42.105+00	2023-10-20 05:43:42.125+00	{}
-4373	plugins::content-manager.explorer.delete	application::grade.grade	\N	[]	1	2023-10-20 05:43:42.105+00	2023-10-20 05:43:42.126+00	{}
-4374	plugins::content-manager.explorer.delete	application::learning-component-types.learning-component-types	\N	[]	1	2023-10-20 05:43:42.105+00	2023-10-20 05:43:42.126+00	{}
-4375	plugins::content-manager.explorer.delete	application::learning-components.learning-components	\N	[]	1	2023-10-20 05:43:42.105+00	2023-10-20 05:43:42.126+00	{}
-4376	plugins::content-manager.explorer.delete	application::lesson-module.lesson-module	\N	[]	1	2023-10-20 05:43:42.106+00	2023-10-20 05:43:42.126+00	{}
-4377	plugins::content-manager.explorer.delete	application::mentor.mentor	\N	[]	1	2023-10-20 05:43:42.106+00	2023-10-20 05:43:42.126+00	{}
-4379	plugins::content-manager.explorer.delete	application::school.school	\N	[]	1	2023-10-20 05:43:42.106+00	2023-10-20 05:43:42.126+00	{}
-4378	plugins::content-manager.explorer.delete	application::save.save	\N	[]	1	2023-10-20 05:43:42.106+00	2023-10-20 05:43:42.126+00	{}
-4380	plugins::content-manager.explorer.delete	application::selection.selection	\N	[]	1	2023-10-20 05:43:42.106+00	2023-10-20 05:43:42.126+00	{}
-4381	plugins::content-manager.explorer.delete	application::session.session	\N	[]	1	2023-10-20 05:43:42.106+00	2023-10-20 05:43:42.126+00	{}
-4383	plugins::content-manager.explorer.delete	application::submission.submission	\N	[]	1	2023-10-20 05:43:42.156+00	2023-10-20 05:43:42.162+00	{}
-4384	plugins::content-manager.explorer.delete	application::unit.unit	\N	[]	1	2023-10-20 05:43:42.159+00	2023-10-20 05:43:42.166+00	{}
-4385	plugins::content-manager.explorer.delete	plugins::users-permissions.user	\N	[]	1	2023-10-20 05:43:42.159+00	2023-10-20 05:43:42.166+00	{}
-4386	plugins::content-manager.explorer.publish	application::authorized-workspace.authorized-workspace	\N	[]	1	2023-10-20 05:43:42.159+00	2023-10-20 05:43:42.166+00	{}
-4387	plugins::content-manager.explorer.publish	application::learning-component-types.learning-component-types	\N	[]	1	2023-10-20 05:43:42.159+00	2023-10-20 05:43:42.168+00	{}
-4388	plugins::content-manager.explorer.publish	application::learning-components.learning-components	\N	[]	1	2023-10-20 05:43:42.159+00	2023-10-20 05:43:42.168+00	{}
-4382	plugins::content-manager.explorer.delete	application::student.student	\N	[]	1	2023-10-20 05:43:42.106+00	2023-10-20 05:43:42.131+00	{}
+4446	plugins::content-manager.explorer.delete	application::authorized-workspace.authorized-workspace	\N	[]	1	2023-11-22 00:56:25.316+00	2023-11-22 00:56:25.332+00	{}
+4452	plugins::content-manager.explorer.delete	application::learning-component-types.learning-component-types	\N	[]	1	2023-11-22 00:56:25.317+00	2023-11-22 00:56:25.332+00	{}
+4458	plugins::content-manager.explorer.delete	application::school.school	\N	[]	1	2023-11-22 00:56:25.317+00	2023-11-22 00:56:25.333+00	{}
+4461	plugins::content-manager.explorer.delete	application::student.student	\N	[]	1	2023-11-22 00:56:25.362+00	2023-11-22 00:56:25.373+00	{}
+4464	plugins::content-manager.explorer.delete	plugins::users-permissions.user	\N	[]	1	2023-11-22 00:56:25.362+00	2023-11-22 00:56:25.374+00	{}
+4389	plugins::content-manager.explorer.update	application::badge.badge	\N	[]	1	2023-11-20 23:44:02.576+00	2023-11-20 23:44:02.596+00	{"fields": ["Name", "Description", "Progress"]}
+4390	plugins::content-manager.explorer.read	application::profile.profile	\N	[]	1	2023-11-20 23:44:02.576+00	2023-11-20 23:44:02.596+00	{"fields": ["biography", "student", "user", "type"]}
+4391	plugins::content-manager.explorer.read	application::badge.badge	\N	[]	1	2023-11-20 23:44:02.577+00	2023-11-20 23:44:02.596+00	{"fields": ["Name", "Description", "Progress"]}
+4392	plugins::content-manager.explorer.create	application::profile.profile	\N	[]	1	2023-11-20 23:44:02.577+00	2023-11-20 23:44:02.596+00	{"fields": ["biography", "student", "user", "type"]}
+4393	plugins::content-manager.explorer.create	application::badge.badge	\N	[]	1	2023-11-20 23:44:02.577+00	2023-11-20 23:44:02.597+00	{"fields": ["Name", "Description", "Progress"]}
+4394	plugins::content-manager.explorer.update	application::profile.profile	\N	[]	1	2023-11-20 23:44:02.577+00	2023-11-20 23:44:02.597+00	{"fields": ["biography", "student", "user", "type"]}
+4447	plugins::content-manager.explorer.delete	application::badge.badge	\N	[]	1	2023-11-22 00:56:25.316+00	2023-11-22 00:56:25.332+00	{}
+4453	plugins::content-manager.explorer.delete	application::learning-components.learning-components	\N	[]	1	2023-11-22 00:56:25.317+00	2023-11-22 00:56:25.332+00	{}
+4459	plugins::content-manager.explorer.delete	application::selection.selection	\N	[]	1	2023-11-22 00:56:25.317+00	2023-11-22 00:56:25.337+00	{}
+4463	plugins::content-manager.explorer.delete	application::unit.unit	\N	[]	1	2023-11-22 00:56:25.362+00	2023-11-22 00:56:25.374+00	{}
+4445	plugins::content-manager.explorer.delete	application::activity.activity	\N	[]	1	2023-11-22 00:56:25.316+00	2023-11-22 00:56:25.332+00	{}
+4448	plugins::content-manager.explorer.delete	application::block.block	\N	[]	1	2023-11-22 00:56:25.316+00	2023-11-22 00:56:25.332+00	{}
+4454	plugins::content-manager.explorer.delete	application::lesson-module.lesson-module	\N	[]	1	2023-11-22 00:56:25.317+00	2023-11-22 00:56:25.333+00	{}
+4460	plugins::content-manager.explorer.delete	application::session.session	\N	[]	1	2023-11-22 00:56:25.362+00	2023-11-22 00:56:25.373+00	{}
+4466	plugins::content-manager.explorer.publish	application::badge.badge	\N	[]	1	2023-11-22 00:56:25.362+00	2023-11-22 00:56:25.374+00	{}
+4469	plugins::content-manager.explorer.publish	application::profile.profile	\N	[]	1	2023-11-22 00:56:25.363+00	2023-11-22 00:56:25.377+00	{}
+4449	plugins::content-manager.explorer.delete	application::blocks-category.blocks-category	\N	[]	1	2023-11-22 00:56:25.316+00	2023-11-22 00:56:25.332+00	{}
+4455	plugins::content-manager.explorer.delete	application::mentor.mentor	\N	[]	1	2023-11-22 00:56:25.317+00	2023-11-22 00:56:25.333+00	{}
+4467	plugins::content-manager.explorer.publish	application::learning-component-types.learning-component-types	\N	[]	1	2023-11-22 00:56:25.362+00	2023-11-22 00:56:25.374+00	{}
+4450	plugins::content-manager.explorer.delete	application::classroom.classroom	\N	[]	1	2023-11-22 00:56:25.316+00	2023-11-22 00:56:25.332+00	{}
+4456	plugins::content-manager.explorer.delete	application::profile.profile	\N	[]	1	2023-11-22 00:56:25.317+00	2023-11-22 00:56:25.333+00	{}
+4462	plugins::content-manager.explorer.delete	application::submission.submission	\N	[]	1	2023-11-22 00:56:25.362+00	2023-11-22 00:56:25.374+00	{}
+4468	plugins::content-manager.explorer.publish	application::learning-components.learning-components	\N	[]	1	2023-11-22 00:56:25.363+00	2023-11-22 00:56:25.374+00	{}
+4451	plugins::content-manager.explorer.delete	application::grade.grade	\N	[]	1	2023-11-22 00:56:25.317+00	2023-11-22 00:56:25.332+00	{}
+4457	plugins::content-manager.explorer.delete	application::save.save	\N	[]	1	2023-11-22 00:56:25.317+00	2023-11-22 00:56:25.333+00	{}
+4465	plugins::content-manager.explorer.publish	application::authorized-workspace.authorized-workspace	\N	[]	1	2023-11-22 00:56:25.362+00	2023-11-22 00:56:25.374+00	{}
 \.
 
 
@@ -3497,6 +3603,7 @@ COPY public."users-permissions_permission" (id, type, controller, action, enable
 401	application	school	create	f		3	\N	\N
 431	application	activity	findone	f		3	\N	\N
 954	application	mentor	me	f		9	\N	\N
+1953	application	save	find	f		10	\N	\N
 462	content-type-builder	contenttypes	createcontenttype	f		3	\N	\N
 476	users-permissions	auth	resetpassword	f		3	\N	\N
 492	users-permissions	userspermissions	getroutes	f		3	\N	\N
@@ -4288,6 +4395,275 @@ COPY public."users-permissions_permission" (id, type, controller, action, enable
 1777	documentation	documentation	getinfos	f		1	\N	\N
 1791	documentation	documentation	login	f		9	\N	\N
 1806	documentation	documentation	updatesettings	f		9	\N	\N
+1808	application	badge	count	f		3	\N	\N
+1809	application	badge	count	f		2	\N	\N
+1810	application	badge	count	f		1	\N	\N
+1811	application	badge	count	f		9	\N	\N
+1812	application	badge	create	f		1	\N	\N
+1813	application	badge	create	f		2	\N	\N
+1814	application	badge	create	f		3	\N	\N
+1815	application	badge	create	f		8	\N	\N
+1816	application	badge	create	f		9	\N	\N
+1817	application	badge	delete	f		1	\N	\N
+1818	application	badge	delete	f		2	\N	\N
+1819	application	badge	delete	f		3	\N	\N
+1821	application	badge	delete	f		9	\N	\N
+1822	application	badge	find	f		1	\N	\N
+1824	application	badge	find	f		3	\N	\N
+1825	application	badge	find	f		8	\N	\N
+1826	application	badge	find	f		9	\N	\N
+1827	application	badge	findone	f		1	\N	\N
+1828	application	badge	findone	f		2	\N	\N
+1829	application	badge	findone	f		3	\N	\N
+1831	application	badge	findone	f		9	\N	\N
+1832	application	badge	update	f		1	\N	\N
+1833	application	badge	update	f		2	\N	\N
+1834	application	badge	update	f		3	\N	\N
+1823	application	badge	find	f		2	\N	\N
+1835	application	badge	update	f		8	\N	\N
+1836	application	badge	update	f		9	\N	\N
+1838	application	profile	count	f		2	\N	\N
+1839	application	profile	count	f		3	\N	\N
+1840	application	profile	count	f		8	\N	\N
+1841	application	profile	count	f		9	\N	\N
+1842	application	profile	create	f		1	\N	\N
+1843	application	profile	create	f		2	\N	\N
+1844	application	profile	create	f		3	\N	\N
+1845	application	profile	create	f		8	\N	\N
+1846	application	profile	create	f		9	\N	\N
+1847	application	profile	delete	f		1	\N	\N
+1837	application	profile	count	f		1	\N	\N
+1849	application	profile	delete	f		3	\N	\N
+1850	application	profile	delete	f		8	\N	\N
+1851	application	profile	delete	f		9	\N	\N
+1848	application	profile	delete	f		2	\N	\N
+1852	application	profile	find	f		1	\N	\N
+1853	application	profile	find	f		2	\N	\N
+1854	application	profile	find	f		3	\N	\N
+1855	application	profile	find	f		8	\N	\N
+1856	application	profile	find	f		9	\N	\N
+1820	application	badge	delete	t		8	\N	\N
+1858	application	profile	findone	f		2	\N	\N
+1859	application	profile	findone	f		3	\N	\N
+1860	application	profile	findone	f		8	\N	\N
+1807	application	badge	count	t		8	\N	\N
+1863	application	profile	update	f		2	\N	\N
+1864	application	profile	update	f		3	\N	\N
+1861	application	profile	findone	f		9	\N	\N
+1857	application	profile	findone	t		1	\N	\N
+1862	application	profile	update	t		1	\N	\N
+1830	application	badge	findone	t		8	\N	\N
+1865	application	profile	update	f		8	\N	\N
+1866	application	profile	update	f		9	\N	\N
+1867	application	activity	find	f		10	\N	\N
+1868	application	activity	findone	f		10	\N	\N
+1869	application	activity	count	f		10	\N	\N
+1870	application	activity	create	f		10	\N	\N
+1871	application	activity	update	f		10	\N	\N
+1875	application	activity	activitytemplateupdate	f		10	\N	\N
+1876	application	authorized-workspace	find	f		10	\N	\N
+1878	application	authorized-workspace	count	f		10	\N	\N
+1877	application	authorized-workspace	findone	f		10	\N	\N
+1879	application	authorized-workspace	create	f		10	\N	\N
+1880	application	authorized-workspace	update	f		10	\N	\N
+1881	application	authorized-workspace	delete	f		10	\N	\N
+1872	application	activity	templateupdate	f		10	\N	\N
+1873	application	activity	delete	f		10	\N	\N
+1874	application	activity	toolbox	f		10	\N	\N
+1882	application	authorized-workspace	toolbox	f		10	\N	\N
+1883	application	badge	find	f		10	\N	\N
+1884	application	badge	findone	f		10	\N	\N
+1885	application	badge	count	f		10	\N	\N
+1886	application	badge	create	f		10	\N	\N
+1887	application	badge	update	f		10	\N	\N
+1888	application	badge	delete	f		10	\N	\N
+1889	application	block	find	f		10	\N	\N
+1890	application	block	findone	f		10	\N	\N
+1891	application	block	count	f		10	\N	\N
+1892	application	block	create	f		10	\N	\N
+1893	application	block	update	f		10	\N	\N
+1894	application	block	delete	f		10	\N	\N
+1895	application	blocks-category	find	f		10	\N	\N
+1896	application	blocks-category	findone	f		10	\N	\N
+1897	application	blocks-category	count	f		10	\N	\N
+1898	application	blocks-category	create	f		10	\N	\N
+1899	application	blocks-category	update	f		10	\N	\N
+1900	application	blocks-category	delete	f		10	\N	\N
+1901	application	classroom-manager	me	f		10	\N	\N
+1902	application	classroom	find	f		10	\N	\N
+1903	application	classroom	findone	f		10	\N	\N
+1904	application	classroom	count	f		10	\N	\N
+1905	application	classroom	create	f		10	\N	\N
+1906	application	classroom	update	f		10	\N	\N
+1907	application	classroom	delete	f		10	\N	\N
+1908	application	classroom	student	f		10	\N	\N
+1909	application	classroom	initjoin	f		10	\N	\N
+1910	application	classroom	workspaces	f		10	\N	\N
+1911	application	classroom	join	f		10	\N	\N
+1912	application	email	send	f		10	\N	\N
+1913	application	grade	find	f		10	\N	\N
+1914	application	grade	findone	f		10	\N	\N
+1915	application	grade	count	f		10	\N	\N
+1916	application	grade	create	f		10	\N	\N
+1917	application	grade	update	f		10	\N	\N
+1918	application	grade	delete	f		10	\N	\N
+1919	application	learning-component-types	find	f		10	\N	\N
+1921	application	learning-component-types	count	f		10	\N	\N
+1922	application	learning-component-types	create	f		10	\N	\N
+1923	application	learning-component-types	update	f		10	\N	\N
+1924	application	learning-component-types	delete	f		10	\N	\N
+1925	application	learning-components	find	f		10	\N	\N
+1920	application	learning-component-types	findone	f		10	\N	\N
+1926	application	learning-components	findone	f		10	\N	\N
+1927	application	learning-components	count	f		10	\N	\N
+1928	application	learning-components	create	f		10	\N	\N
+1929	application	learning-components	update	f		10	\N	\N
+1930	application	learning-components	delete	f		10	\N	\N
+1931	application	lesson-module	find	f		10	\N	\N
+1932	application	lesson-module	findone	f		10	\N	\N
+1934	application	lesson-module	create	f		10	\N	\N
+1935	application	lesson-module	update	f		10	\N	\N
+1936	application	lesson-module	delete	f		10	\N	\N
+1937	application	mentor	find	f		10	\N	\N
+1938	application	mentor	findone	f		10	\N	\N
+1939	application	mentor	count	f		10	\N	\N
+1940	application	mentor	create	f		10	\N	\N
+1933	application	lesson-module	count	f		10	\N	\N
+1941	application	mentor	update	f		10	\N	\N
+1942	application	mentor	delete	f		10	\N	\N
+1943	application	mentor	me	f		10	\N	\N
+1944	application	profile	find	f		10	\N	\N
+1945	application	profile	findone	f		10	\N	\N
+1946	application	profile	count	f		10	\N	\N
+1948	application	profile	update	f		10	\N	\N
+1949	application	profile	delete	f		10	\N	\N
+1950	application	sandbox	toolbox	f		10	\N	\N
+1962	application	school	count	f		10	\N	\N
+1978	application	student	find	f		10	\N	\N
+1995	application	unit	create	f		10	\N	\N
+2012	content-manager	content-types	findcontenttypeconfiguration	f		10	\N	\N
+2027	content-type-builder	components	createcomponent	f		10	\N	\N
+2040	documentation	documentation	regeneratedoc	f		10	\N	\N
+2054	users-permissions	user	update	f		10	\N	\N
+2070	users-permissions	userspermissions	updaterole	f		10	\N	\N
+1952	application	sandbox	createsubmission	f		10	\N	\N
+1967	application	selection	findone	f		10	\N	\N
+1977	application	session	delete	f		10	\N	\N
+1993	application	unit	findone	f		10	\N	\N
+2011	content-manager	content-types	findcontenttypessettings	f		10	\N	\N
+2024	content-type-builder	componentcategories	deletecategory	f		10	\N	\N
+2036	documentation	documentation	getinfos	f		10	\N	\N
+2051	users-permissions	auth	emailconfirmation	f		10	\N	\N
+2066	users-permissions	userspermissions	getroles	f		10	\N	\N
+1954	application	save	findone	f		10	\N	\N
+1947	application	profile	create	f		10	\N	\N
+1958	application	save	delete	f		10	\N	\N
+1959	application	save	findbyactivity	f		10	\N	\N
+1961	application	school	findone	f		10	\N	\N
+1964	application	school	update	f		10	\N	\N
+1966	application	selection	find	f		10	\N	\N
+1969	application	selection	create	f		10	\N	\N
+1973	application	session	findone	f		10	\N	\N
+1974	application	session	count	f		10	\N	\N
+1975	application	session	create	f		10	\N	\N
+1976	application	session	update	f		10	\N	\N
+1979	application	student	findone	f		10	\N	\N
+1984	application	student	me	f		10	\N	\N
+1988	application	submission	count	f		10	\N	\N
+1989	application	submission	create	f		10	\N	\N
+1990	application	submission	update	f		10	\N	\N
+1991	application	submission	delete	f		10	\N	\N
+1992	application	unit	find	f		10	\N	\N
+1998	content-manager	collection-types	find	f		10	\N	\N
+2002	content-manager	collection-types	delete	f		10	\N	\N
+2004	content-manager	collection-types	unpublish	f		10	\N	\N
+2005	content-manager	collection-types	bulkdelete	f		10	\N	\N
+2006	content-manager	collection-types	previewmanyrelations	f		10	\N	\N
+2015	content-manager	single-types	find	f		10	\N	\N
+2007	content-manager	components	findcomponents	f		10	\N	\N
+2017	content-manager	single-types	delete	f		10	\N	\N
+2018	content-manager	single-types	publish	f		10	\N	\N
+2026	content-type-builder	components	getcomponent	f		10	\N	\N
+2028	content-type-builder	components	updatecomponent	f		10	\N	\N
+2029	content-type-builder	components	deletecomponent	f		10	\N	\N
+2020	content-manager	uid	generateuid	f		10	\N	\N
+2033	content-type-builder	contenttypes	createcontenttype	f		10	\N	\N
+2032	content-type-builder	contenttypes	getcontenttype	f		10	\N	\N
+2041	documentation	documentation	deletedoc	f		10	\N	\N
+2042	documentation	documentation	updatesettings	f		10	\N	\N
+2046	users-permissions	auth	callback	f		10	\N	\N
+2043	email	email	send	f		10	\N	\N
+2047	users-permissions	auth	resetpassword	f		10	\N	\N
+2049	users-permissions	auth	forgotpassword	f		10	\N	\N
+2052	users-permissions	auth	sendemailconfirmation	f		10	\N	\N
+2059	users-permissions	user	destroyall	f		10	\N	\N
+2060	users-permissions	user	me	f		10	\N	\N
+2061	users-permissions	userspermissions	createrole	f		10	\N	\N
+2063	users-permissions	userspermissions	getpermissions	f		10	\N	\N
+2064	users-permissions	userspermissions	getpolicies	f		10	\N	\N
+2067	users-permissions	userspermissions	getroutes	f		10	\N	\N
+2071	users-permissions	userspermissions	getemailtemplate	f		10	\N	\N
+2075	users-permissions	userspermissions	getproviders	f		10	\N	\N
+2076	users-permissions	userspermissions	updateproviders	f		10	\N	\N
+1951	application	sandbox	findonesubmission	f		10	\N	\N
+1965	application	school	delete	f		10	\N	\N
+1982	application	student	update	f		10	\N	\N
+2000	content-manager	collection-types	create	f		10	\N	\N
+2014	content-manager	relations	find	f		10	\N	\N
+2030	content-type-builder	connections	getconnections	f		10	\N	\N
+2045	email	email	getsettings	f		10	\N	\N
+2058	users-permissions	user	destroy	f		10	\N	\N
+2073	users-permissions	userspermissions	getadvancedsettings	f		10	\N	\N
+1955	application	save	count	f		10	\N	\N
+1956	application	save	create	f		10	\N	\N
+1957	application	save	update	f		10	\N	\N
+1963	application	school	create	f		10	\N	\N
+1968	application	selection	count	f		10	\N	\N
+1960	application	school	find	f		10	\N	\N
+1971	application	selection	delete	f		10	\N	\N
+1970	application	selection	update	f		10	\N	\N
+1972	application	session	find	f		10	\N	\N
+1980	application	student	count	f		10	\N	\N
+1981	application	student	create	f		10	\N	\N
+1983	application	student	delete	f		10	\N	\N
+1985	application	student	enrolled	f		10	\N	\N
+1986	application	submission	find	f		10	\N	\N
+1987	application	submission	findone	f		10	\N	\N
+1994	application	unit	count	f		10	\N	\N
+1996	application	unit	update	f		10	\N	\N
+1997	application	unit	delete	f		10	\N	\N
+1999	content-manager	collection-types	findone	f		10	\N	\N
+2001	content-manager	collection-types	update	f		10	\N	\N
+2003	content-manager	collection-types	publish	f		10	\N	\N
+2008	content-manager	components	findcomponentconfiguration	f		10	\N	\N
+2009	content-manager	components	updatecomponentconfiguration	f		10	\N	\N
+2010	content-manager	content-types	findcontenttypes	f		10	\N	\N
+2013	content-manager	content-types	updatecontenttypeconfiguration	f		10	\N	\N
+2016	content-manager	single-types	createorupdate	f		10	\N	\N
+2019	content-manager	single-types	unpublish	f		10	\N	\N
+2021	content-manager	uid	checkuidavailability	f		10	\N	\N
+2022	content-type-builder	builder	getreservednames	f		10	\N	\N
+2023	content-type-builder	componentcategories	editcategory	f		10	\N	\N
+2025	content-type-builder	components	getcomponents	f		10	\N	\N
+2031	content-type-builder	contenttypes	getcontenttypes	f		10	\N	\N
+2034	content-type-builder	contenttypes	updatecontenttype	f		10	\N	\N
+2035	content-type-builder	contenttypes	deletecontenttype	f		10	\N	\N
+2037	documentation	documentation	index	f		10	\N	\N
+2038	documentation	documentation	loginview	f		10	\N	\N
+2039	documentation	documentation	login	f		10	\N	\N
+2044	email	email	test	f		10	\N	\N
+2048	users-permissions	auth	connect	f		10	\N	\N
+2050	users-permissions	auth	register	f		10	\N	\N
+2053	users-permissions	user	create	f		10	\N	\N
+2055	users-permissions	user	find	f		10	\N	\N
+2057	users-permissions	user	count	f		10	\N	\N
+2056	users-permissions	user	findone	f		10	\N	\N
+2062	users-permissions	userspermissions	deleterole	f		10	\N	\N
+2065	users-permissions	userspermissions	getrole	f		10	\N	\N
+2069	users-permissions	userspermissions	searchusers	f		10	\N	\N
+2072	users-permissions	userspermissions	updateemailtemplate	f		10	\N	\N
+2074	users-permissions	userspermissions	updateadvancedsettings	f		10	\N	\N
+2068	users-permissions	userspermissions	index	f		10	\N	\N
 \.
 
 
@@ -4301,6 +4677,7 @@ COPY public."users-permissions_role" (id, name, description, type, created_by, u
 9	Researcher	Role for researchers	researcher	\N	\N
 1	Classroom Manager	Default role given to authenticated user.	authenticated	\N	\N
 8	Content Creator	Role given to content Creators	content_creator	\N	\N
+10	Test	TTTTTTTTTTTTTTT	test	\N	\N
 \.
 
 
@@ -4351,6 +4728,13 @@ SELECT pg_catalog.setval('public.authorized_workspaces__blocks_id_seq', 74, true
 --
 
 SELECT pg_catalog.setval('public.authorized_workspaces_id_seq', 30, true);
+
+
+--
+-- Name: badges_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.badges_id_seq', 1, false);
 
 
 --
@@ -4413,7 +4797,7 @@ SELECT pg_catalog.setval('public.classrooms_teachers__teachers_classrooms_id_seq
 -- Name: core_store_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.core_store_id_seq', 315, true);
+SELECT pg_catalog.setval('public.core_store_id_seq', 319, true);
 
 
 --
@@ -4463,6 +4847,13 @@ SELECT pg_catalog.setval('public.objective_types_id_seq', 3, true);
 --
 
 SELECT pg_catalog.setval('public.objectives_id_seq', 6, true);
+
+
+--
+-- Name: profile_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.profile_id_seq', 1, true);
 
 
 --
@@ -4518,7 +4909,7 @@ SELECT pg_catalog.setval('public.strapi_administrator_id_seq', 2, false);
 -- Name: strapi_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.strapi_permission_id_seq', 4388, true);
+SELECT pg_catalog.setval('public.strapi_permission_id_seq', 4469, true);
 
 
 --
@@ -4602,14 +4993,14 @@ SELECT pg_catalog.setval('public.upload_file_morph_id_seq', 79, true);
 -- Name: users-permissions_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."users-permissions_permission_id_seq"', 1806, true);
+SELECT pg_catalog.setval('public."users-permissions_permission_id_seq"', 2076, true);
 
 
 --
 -- Name: users-permissions_role_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."users-permissions_role_id_seq"', 9, true);
+SELECT pg_catalog.setval('public."users-permissions_role_id_seq"', 10, true);
 
 
 --
@@ -4649,6 +5040,14 @@ ALTER TABLE ONLY public.authorized_workspaces__blocks
 
 ALTER TABLE ONLY public.authorized_workspaces
     ADD CONSTRAINT authorized_workspaces_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: badges badges_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.badges
+    ADD CONSTRAINT badges_pkey PRIMARY KEY (id);
 
 
 --
@@ -4817,6 +5216,30 @@ ALTER TABLE ONLY public.objective_types
 
 ALTER TABLE ONLY public.objectives
     ADD CONSTRAINT objectives_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: profile profile_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.profile
+    ADD CONSTRAINT profile_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: profile profile_student_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.profile
+    ADD CONSTRAINT profile_student_unique UNIQUE (student);
+
+
+--
+-- Name: profile profile_user_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.profile
+    ADD CONSTRAINT profile_user_unique UNIQUE ("user");
 
 
 --
@@ -5038,3 +5461,4 @@ ALTER TABLE ONLY public."users-permissions_user"
 --
 -- PostgreSQL database dump complete
 --
+
