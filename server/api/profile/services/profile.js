@@ -16,12 +16,12 @@ module.exports = {
       return await strapi.services.profile.findOne({
         type: "student",
         student: id,
-      }, ["student"])
+      }, ["student", "profileImage"])
     } else {
       return await strapi.services.profile.findOne({
         type: "user",
         user: id,
-      }, ["user", "user.role"])
+      }, ["user", "user.role", "profileImage"])
     }
   },
 

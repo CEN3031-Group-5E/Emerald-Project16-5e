@@ -1,5 +1,6 @@
 import "./Profile.less";
 
+import { server } from '../../Utils/hosts';
 import React, { useEffect, useState } from 'react';
 import ProfileCard from "../../components/Profile/ProfileCard";
 import Badge from "../../components/Profile/Badge";
@@ -26,7 +27,7 @@ const Profile = () => {
       const getProfileResponse = await getProfile(userId, isStudent);
       const newPageData = {
         status: "loaded",
-        profileImage: getProfileResponse.data.profile.profileImage ?? defaultProfileImageUrl,
+        profileImage: `${server}${getProfileResponse.data.profile.profileImage?.url}` ?? defaultProfileImageUrl,
         biography: getProfileResponse.data.profile.biography ?? "User does not have a biography..."
       }
 
