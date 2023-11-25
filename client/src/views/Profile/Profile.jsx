@@ -16,7 +16,7 @@ const defaultProfileImageUrl = "/images/default_profile.png"
 const Profile = () => {
   const userId = 1; // Todo Get from url params
   const isStudent = false; // Todo Get from url params
-  const isOwnProfile = false; // Todo Check if profile belongs to logged in user
+  const isOwnProfile = true; // Todo Check if profile belongs to logged in user
 
   const [pageData, setPageData] = useState({
     status: "loading",
