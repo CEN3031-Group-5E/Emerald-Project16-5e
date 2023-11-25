@@ -13,6 +13,7 @@ import { getProfile } from "../../Utils/requests";
 const Profile = () => {
   const userId = 1; // Todo Get from url params
   const isStudent = false; // Todo Get from url params
+  const isOwnProfile = false; // Todo Check if profile belongs to logged in user
 
   const [pageData, setPageData] = useState({
     status: "loading",
@@ -98,12 +99,14 @@ const Profile = () => {
               rows="4"
               cols="50"
             />
-            <button onClick={handleBioSave}>Done</button>
+            <button onClick={handleBioSave}>Save</button>
           </div>
         ) : (
           <div>
             <p>{bio}</p>
-            <button onClick={handleBioEdit}>Edit</button>
+            {isOwnProfile && (
+              <button onClick={handleBioEdit}>Edit</button>
+            )}
           </div>
         )}
       </div>
