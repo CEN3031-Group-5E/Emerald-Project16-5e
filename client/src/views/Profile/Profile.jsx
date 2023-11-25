@@ -26,7 +26,8 @@ const Profile = () => {
       const getProfileResponse = await getProfile(userId, isStudent);
       const newPageData = {
         status: "loaded",
-        profileImage: defaultProfileImageUrl,
+        profileImage: getProfileResponse.data.profile.profileImage ?? defaultProfileImageUrl,
+        biography: getProfileResponse.data.profile.biography ?? "User does not have a biography..."
       }
 
       if (getProfileResponse.data.profile.type === "user") {
@@ -105,7 +106,7 @@ const Profile = () => {
           </div>
         ) : (
           <div>
-            <p>{bio}</p>
+            <p>{pageData.biography}</p>
             {isOwnProfile && (
               <button onClick={handleBioEdit}>Edit</button>
             )}
