@@ -11,8 +11,8 @@ import BadgeDisplay from "../../components/Profile/BadgeDisplay";
 import { getProfile } from "../../Utils/requests";
 
 const Profile = () => {
-  const userId = 55; // Todo Get from url params
-  const isStudent = true; // Todo Get from url params
+  const userId = 1; // Todo Get from url params
+  const isStudent = false; // Todo Get from url params
 
   const [pageData, setPageData] = useState({
     status: "loading",
