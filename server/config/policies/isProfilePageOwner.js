@@ -12,8 +12,6 @@ module.exports = async (ctx, next) => {
   const idParam = Number(ctx.params.id);
   const useUserId = Number(JSON.parse(ctx.request.query.useUserId ?? "false"));
 
-  console.log(Object.keys(ctx));
-
   if (!useUserId) {
     // Profiles can be accessed by profile ID OR by the combination of user id and isStudent.
     // Only the second approach is supported right now.
