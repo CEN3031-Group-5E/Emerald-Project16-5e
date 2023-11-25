@@ -10,6 +10,8 @@ import BadgeTable from "../../components/Profile/BadgeTable";
 import BadgeDisplay from "../../components/Profile/BadgeDisplay";
 import { getProfile } from "../../Utils/requests";
 
+const defaultProfileImageUrl = "/images/default_profile.png"
+
 const Profile = () => {
   const userId = 1; // Todo Get from url params
   const isStudent = false; // Todo Get from url params
@@ -24,7 +26,7 @@ const Profile = () => {
       const getProfileResponse = await getProfile(userId, isStudent);
       const newPageData = {
         status: "loaded",
-        profileImage: "https://media.discordapp.net/attachments/517010400860962831/1171160597463838840/image.png",
+        profileImage: defaultProfileImageUrl,
       }
 
       if (getProfileResponse.data.profile.type === "user") {
