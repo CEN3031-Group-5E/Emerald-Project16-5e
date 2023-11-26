@@ -673,6 +673,10 @@ export const getClassroomWorkspace = async (id) =>
     error: 'Unable to retrive classroom workspaces',
   });
 
+/**
+ * @param {number} userId
+ * @param {boolean} isStudent
+ */
 export const getProfile = async (userId, isStudent) =>
   makeRequest({
     method: GET,
@@ -681,6 +685,11 @@ export const getProfile = async (userId, isStudent) =>
     error: 'Unable to retrive profiles',
   });
 
+/**
+ * @param {number} userId
+ * @param {boolean} isStudent
+ * @param {object} data
+ */
 export const updateProfile = async (userId, isStudent, data) =>
   makeRequest({
     method: PUT,

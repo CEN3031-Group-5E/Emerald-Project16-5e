@@ -1,15 +1,14 @@
 import "./Profile.less";
 
-import { server } from '../../Utils/hosts';
-import React, { useEffect, useState } from 'react';
+import { server } from "../../Utils/hosts";
+import React, { useEffect, useState } from "react";
 import ProfileCard from "../../components/Profile/ProfileCard";
-import Badge from "../../components/Profile/Badge";
 import ProgressBar from "../../components/Profile/ProgressBar";
 import NavBar from "../../components/NavBar/NavBar";
 import ProjectSection from "../../components/Profile/ProjectSection";
 import BadgeTable from "../../components/Profile/BadgeTable";
 import BadgeDisplay from "../../components/Profile/BadgeDisplay";
-import { getProfile } from "../../Utils/requests";
+import { getProfile, updateProfile } from "../../Utils/requests";
 
 const defaultProfileImageUrl = "/images/default_profile.png"
 
@@ -22,7 +21,7 @@ const Profile = () => {
     status: "loading",
   });
 
-  const refreshPageData = async () => {
+  const fetchPageData = async () => {
     try {
       const getProfileResponse = await getProfile(userId, isStudent);
       const newPageData = {
@@ -49,26 +48,14 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    refreshPageData();
+    fetchPageData();
   }, []);
 
-  const [bio, setBio] = useState('Your bio text goes here');
+  const [newBio, setNewBio] = useState("");
   const [isEditingBio, setIsEditingBio] = useState(false);
+
   const [selectedBadges, setSelectedBadges] = useState([1, 2, 3, 4]);
   const [isEditingBadges, setIsEditingBadges] = useState(null);
-
-  const handleBioEdit = () => {
-    setIsEditingBio(true);
-  };
-
-  const handleBioSave = () => {
-    setIsEditingBio(false);
-    // You can save the updated bio to your backend or state management system here
-  };
-
-  const handleBioChange = (e) => {
-    setBio(e.target.value);
-  };
 
   const handleBadgeEdit = (badgeIndex) => {
     // Toggle the editing state for the selected badge
@@ -98,18 +85,49 @@ const Profile = () => {
         {isEditingBio ? (
           <div>
             <textarea
-              value={bio}
-              onChange={handleBioChange}
+              value={newBio}
+              onChange={(e) => {
+                setNewBio(e.target.value)
+              }}
               rows="4"
               cols="50"
             />
-            <button onClick={handleBioSave}>Save</button>
+            {/* Cancel */}
+            <button
+              onClick={() => {
+                setIsEditingBio(false);
+              }
+            }>
+              Cancel
+            </button>
+            {/* Save */}
+            <button
+              onClick={() => {
+                setIsEditingBio(false);
+
+                updateProfile(userId, isStudent, {
+                  biography: newBio,
+                }).then(() => {
+                  fetchPageData();
+                });
+              }
+            }>
+              Save
+            </button>
           </div>
         ) : (
           <div>
             <p>{pageData.biography}</p>
+            {/* Edit */}
             {isOwnProfile && (
-              <button onClick={handleBioEdit}>Edit</button>
+              <button
+                onClick={() => {
+                  setIsEditingBio(true);
+                  setNewBio(pageData.biography);
+                }
+              }>
+                Edit
+              </button>
             )}
           </div>
         )}
@@ -117,7 +135,7 @@ const Profile = () => {
       <div className='profile-badge-display profile-page-section'>
         <h2>Badge Display</h2>
         <div className='profile-badge-display-container nav-padding'>
-        
+
         <BadgeDisplay />
         <BadgeDisplay />
         <BadgeDisplay />
@@ -131,7 +149,7 @@ const Profile = () => {
           <ProgressBar progress={20} />
           <ProgressBar progress={50} />
           <ProgressBar progress={90} />
-        
+
 
         </div>
 
