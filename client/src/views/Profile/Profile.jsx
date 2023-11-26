@@ -166,6 +166,7 @@ const Profile = () => {
             }}
           >
             <textarea
+              className={"profile-page-item-border profile-page-round"}
               value={newBio}
               onChange={(e) => {
                 setNewBio(e.target.value)
@@ -173,32 +174,34 @@ const Profile = () => {
               rows="4"
               cols="50"
             />
-            {/* Cancel */}
-            <button
-              className={"profile-page-round profile-page-item-border profile-page-button"}
-              type={"button"}
-              onClick={() => {
-                setIsEditingBio(false);
-              }
-            }>
-              Cancel
-            </button>
-            {/* Save */}
-            <button
-              className={"profile-page-round profile-page-item-border profile-page-button"}
-              type={"button"}
-              onClick={() => {
-                setIsEditingBio(false);
+            <div>
+              {/* Cancel */}
+              <button
+                className={"profile-page-round profile-page-item-border profile-page-button"}
+                type={"button"}
+                onClick={() => {
+                  setIsEditingBio(false);
+                }
+                }>
+                Cancel
+              </button>
+              {/* Save */}
+              <button
+                className={"profile-page-round profile-page-item-border profile-page-button"}
+                type={"button"}
+                onClick={() => {
+                  setIsEditingBio(false);
 
-                updateProfile(userId, isStudent, {
-                  biography: newBio,
-                }).then(() => {
-                  fetchPageData();
-                });
-              }
-            }>
-              Save
-            </button>
+                  updateProfile(userId, isStudent, {
+                    biography: newBio,
+                  }).then(() => {
+                    fetchPageData();
+                  });
+                }
+                }>
+                Save
+              </button>
+            </div>
           </form>
         ) : (
           <div>
