@@ -1,7 +1,7 @@
 import "./Profile.less";
 
 import { server } from "../../Utils/hosts";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState, useRef } from "react";
 import ProfileCard from "../../components/Profile/ProfileCard";
 import ProgressBar from "../../components/Profile/ProgressBar";
 import NavBar from "../../components/NavBar/NavBar";
@@ -54,6 +54,7 @@ const Profile = () => {
   const [newBio, setNewBio] = useState("");
   const [isEditingBio, setIsEditingBio] = useState(false);
 
+  const selectImageButtonRef = useRef();
   const [isEditingProfileImage, setIsEditingProfileImage] = useState(false);
 
   const [selectedBadges, setSelectedBadges] = useState([1, 2, 3, 4]);
@@ -108,11 +109,21 @@ const Profile = () => {
                       });
                   }
                 }>
-                  <label>
+                  <div>
+                    <button
+                      className={"profile-page-round profile-page-item-border profile-page-button"}
+                      type={"button"}
+                      onClick={() => {
+                        selectImageButtonRef.current.click();
+                      }}
+                    >
+                      Select Image
+                    </button>
                     <input
+                      ref={selectImageButtonRef}
                       name={"profileImage"} type={"file"}
                     />
-                  </label>
+                  </div>
                   <div>
                     <button
                       className={"profile-page-round profile-page-item-border profile-page-button"}
