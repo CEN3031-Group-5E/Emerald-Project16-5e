@@ -1,7 +1,7 @@
 import "./Profile.less";
 
 import { server } from "../../Utils/hosts";
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import ProfileCard from "../../components/Profile/ProfileCard";
 import ProgressBar from "../../components/Profile/ProgressBar";
 import NavBar from "../../components/NavBar/NavBar";
@@ -54,6 +54,8 @@ const Profile = () => {
   const [newBio, setNewBio] = useState("");
   const [isEditingBio, setIsEditingBio] = useState(false);
 
+  const [isEditingProfileImage, setIsEditingProfileImage] = useState(false);
+
   const [selectedBadges, setSelectedBadges] = useState([1, 2, 3, 4]);
   const [isEditingBadges, setIsEditingBadges] = useState(null);
 
@@ -79,6 +81,59 @@ const Profile = () => {
         imageUrl={pageData.profileImage}
         name={pageData.name}
         role={pageData.role}
+        editButton={(
+          <>
+            {isOwnProfile && (
+              isEditingProfileImage ? (
+                <form onSubmit={(e) => {
+                  e.preventDefault();
+
+                  setIsEditingProfileImage(false);
+
+                  const rawFormData = new FormData(e.target);
+                  const profileImage = rawFormData.get("profileImage");
+                  if (profileImage.size === 0) {
+                    return;
+                  }
+
+                  const data = new FormData();
+                  data.append("data", "{}")
+                  data.append("files.profileImage", profileImage)
+
+                  updateProfile(userId, isStudent, data)
+                    .then(() => {
+                      fetchPageData();
+                    });
+                }}>
+                  <label>
+                    <input name={"profileImage"} type={"file"}/>
+                  </label>
+                  <div>
+                    <button
+                      type={"submit"}
+                      onClick={() => {
+                        setIsEditingProfileImage(false);
+                      }}
+                    >
+                      Cancel
+                    </button>
+                    <button type={"submit"}>
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              ) : (
+                <button
+                  onClick={() => {
+                    setIsEditingProfileImage(true);
+                  }}
+                >
+                  Edit
+                </button>
+              )
+            )}
+          </>
+        )}
       />
       <div className="profile-biography-section profile-page-section">
         <h2>User Biography</h2>
