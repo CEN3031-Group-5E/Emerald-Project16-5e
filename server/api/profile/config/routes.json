@@ -13,7 +13,7 @@
       "path": "/profile/:id",
       "handler": "profile.update",
       "config": {
-        "policies": []
+        "policies": ["global::isProfilePageOwner"]
       }
     }
   ]
