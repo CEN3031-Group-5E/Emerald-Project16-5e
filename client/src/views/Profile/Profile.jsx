@@ -1,5 +1,5 @@
 import "./Profile.less";
-
+import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import ProfileCard from "../../components/Profile/ProfileCard";
 import Badge from "../../components/Profile/Badge";
@@ -11,8 +11,9 @@ import BadgeDisplay from "../../components/Profile/BadgeDisplay";
 import { getProfile } from "../../Utils/requests";
 
 const Profile = () => {
-  const userId = 55; // Todo Get from url params
-  const isStudent = true; // Todo Get from url params
+  //const userId = 55; // Todo Get from url params
+  //const isStudent = true; // Todo Get from url params
+  const { userId, isStudent } = useParams();
 
   const [pageData, setPageData] = useState({
     status: "loading",
@@ -45,7 +46,7 @@ const Profile = () => {
 
   useEffect(() => {
     refreshPageData();
-  }, []);
+  }, [userId, isStudent]);
 
   const [bio, setBio] = useState('Your bio text goes here');
   const [isEditingBio, setIsEditingBio] = useState(false);
