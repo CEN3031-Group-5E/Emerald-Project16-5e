@@ -85,31 +85,37 @@ const Profile = () => {
           <>
             {isOwnProfile && (
               isEditingProfileImage ? (
-                <form onSubmit={(e) => {
-                  e.preventDefault();
+                <form
+                  className={"profile-edit-profile-image-form"}
+                  onSubmit={(e) => {
+                    e.preventDefault();
 
-                  setIsEditingProfileImage(false);
+                    setIsEditingProfileImage(false);
 
-                  const rawFormData = new FormData(e.target);
-                  const profileImage = rawFormData.get("profileImage");
-                  if (profileImage.size === 0) {
-                    return;
+                    const rawFormData = new FormData(e.target);
+                    const profileImage = rawFormData.get("profileImage");
+                    if (profileImage.size === 0) {
+                      return;
+                    }
+
+                    const data = new FormData();
+                    data.append("data", "{}")
+                    data.append("files.profileImage", profileImage)
+
+                    updateProfile(userId, isStudent, data)
+                      .then(() => {
+                        fetchPageData();
+                      });
                   }
-
-                  const data = new FormData();
-                  data.append("data", "{}")
-                  data.append("files.profileImage", profileImage)
-
-                  updateProfile(userId, isStudent, data)
-                    .then(() => {
-                      fetchPageData();
-                    });
-                }}>
+                }>
                   <label>
-                    <input name={"profileImage"} type={"file"}/>
+                    <input
+                      name={"profileImage"} type={"file"}
+                    />
                   </label>
                   <div>
                     <button
+                      className={"profile-page-round profile-page-item-border profile-page-button"}
                       type={"submit"}
                       onClick={() => {
                         setIsEditingProfileImage(false);
@@ -117,13 +123,17 @@ const Profile = () => {
                     >
                       Cancel
                     </button>
-                    <button type={"submit"}>
+                    <button
+                      className={"profile-page-round profile-page-item-border profile-page-button"}
+                      type={"submit"}
+                    >
                       Submit
                     </button>
                   </div>
                 </form>
               ) : (
                 <button
+                  className={"profile-page-round profile-page-item-border profile-page-button"}
                   onClick={() => {
                     setIsEditingProfileImage(true);
                   }}
@@ -138,7 +148,12 @@ const Profile = () => {
       <div className="profile-biography-section profile-page-section">
         <h2>User Biography</h2>
         {isEditingBio ? (
-          <div>
+          <form
+            className={"profile-edit-biography-form"}
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
+          >
             <textarea
               value={newBio}
               onChange={(e) => {
@@ -149,6 +164,8 @@ const Profile = () => {
             />
             {/* Cancel */}
             <button
+              className={"profile-page-round profile-page-item-border profile-page-button"}
+              type={"button"}
               onClick={() => {
                 setIsEditingBio(false);
               }
@@ -157,6 +174,8 @@ const Profile = () => {
             </button>
             {/* Save */}
             <button
+              className={"profile-page-round profile-page-item-border profile-page-button"}
+              type={"button"}
               onClick={() => {
                 setIsEditingBio(false);
 
@@ -169,13 +188,14 @@ const Profile = () => {
             }>
               Save
             </button>
-          </div>
+          </form>
         ) : (
           <div>
             <p>{pageData.biography}</p>
             {/* Edit */}
             {isOwnProfile && (
               <button
+                className={"profile-page-round profile-page-item-border profile-page-button"}
                 onClick={() => {
                   setIsEditingBio(true);
                   setNewBio(pageData.biography);
