@@ -15,6 +15,15 @@ const Profile = () => {
   // const isStudent = true; // Todo Get from url params
   const { userId, isStudent } = useParams();
 
+  // Check if parameters are provided, otherwise use default values or fall back to current user
+  const defaultUserId = 32;
+  const defaultIsStudent = true;
+  
+  // Use the provided values or defaults
+  const profileUserId = userId || defaultUserId;
+  const profileIsStudent = isStudent !== undefined ? isStudent === 'true' : defaultIsStudent;
+
+
   const [pageData, setPageData] = useState({
     status: "loading",
   });
@@ -45,8 +54,11 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    refreshPageData();
-  }, [userId, isStudent]);
+    console.log('userId:', profileUserId);
+    console.log('isStudent:', profileIsStudent);
+    
+    refreshPageData(profileUserId, profileIsStudent);
+  }, [profileUserId, profileIsStudent]);
 
   const [bio, setBio] = useState('Your bio text goes here');
   const [isEditingBio, setIsEditingBio] = useState(false);
