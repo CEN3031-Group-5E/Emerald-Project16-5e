@@ -1,19 +1,63 @@
 import "./Profile.less";
-// import "./Badge.less";
 
-import React, { useState } from 'react';
+import { server } from "../../Utils/hosts";
+import React, { Fragment, useEffect, useState, useRef } from "react";
 import ProfileCard from "../../components/Profile/ProfileCard";
-import Badge from "../../components/Profile/Badge";
 import ProgressBar from "../../components/Profile/ProgressBar";
 import NavBar from "../../components/NavBar/NavBar";
 import ProjectSection from "../../components/Profile/ProjectSection";
 import BadgeTable from "../../components/Profile/BadgeTable";
 import BadgeDisplay from "../../components/Profile/BadgeDisplay";
+import { getProfile, updateProfile } from "../../Utils/requests";
+
+const defaultProfileImageUrl = "/images/default_profile.png"
 
 const Profile = () => {
-  const [bio, setBio] = useState('Your bio text goes here');
+  const userId = 1; // Todo Get from url params
+  const isStudent = false; // Todo Get from url params
+  const isOwnProfile = true; // Todo Check if profile belongs to logged in user
+
+  const [pageData, setPageData] = useState({
+    status: "loading",
+  });
+
+  const fetchPageData = async () => {
+    try {
+      const getProfileResponse = await getProfile(userId, isStudent);
+      const newPageData = {
+        status: "loaded",
+        profileImage: `${server}${getProfileResponse.data.profile.profileImage?.url}` ?? defaultProfileImageUrl,
+        biography: getProfileResponse.data.profile.biography ?? "User does not have a biography..."
+      }
+
+      if (getProfileResponse.data.profile.type === "user") {
+        newPageData.name = getProfileResponse.data.profile.user.username;
+        newPageData.role = getProfileResponse.data.profile.user.role.name;
+      } else {
+        newPageData.name = getProfileResponse.data.profile.student.name;
+        newPageData.role = "Student";
+      }
+
+      setPageData(newPageData);
+    } catch (e) {
+      setPageData({
+        status: "errored",
+        error: e,
+      })
+    }
+  }
+
+  useEffect(() => {
+    fetchPageData();
+  }, []);
+
+  const [newBio, setNewBio] = useState("");
   const [isEditingBio, setIsEditingBio] = useState(false);
-  //const [selectedBadges, setSelectedBadges] = useState([1, 2, 3, 4]);
+
+  const selectImageButtonRef = useRef();
+  const [isEditingProfileImage, setIsEditingProfileImage] = useState(false);
+
+  const [selectedBadges, setSelectedBadges] = useState([1, 2, 3, 4]);
   //const [isEditingBadges, setIsEditingBadges] = useState(null);
   const [badgeProgress, setBadgeProgress] = useState([
     { id: 1, progress: 100, name: "1 Month", imageUrl: "https://cdn.discordapp.com/attachments/1163871478014554142/1178351638906408991/1monthbadge.png?ex=6575d47b&is=65635f7b&hm=78777dc5a28d30c57f9226676ea84f9786718b3911207216789be238e8e1b94d&" },
@@ -75,33 +119,151 @@ const Profile = () => {
     <div className='profile-page-grid nav-padding'>
       <NavBar />
       <ProfileCard
-        imageUrl={"https://media.discordapp.net/attachments/517010400860962831/1171160597463838840/image.png"}
-        name={"John Smith"}
-        role={"Student"}
+        imageUrl={pageData.profileImage}
+        name={pageData.name}
+        role={pageData.role}
+        editButton={(
+          <>
+            {isOwnProfile && (
+              isEditingProfileImage ? (
+                <form
+                  className={"profile-edit-profile-image-form"}
+                  onSubmit={(e) => {
+                    e.preventDefault();
+
+                    setIsEditingProfileImage(false);
+
+                    const rawFormData = new FormData(e.target);
+                    const profileImage = rawFormData.get("profileImage");
+                    if (profileImage.size === 0) {
+                      return;
+                    }
+
+                    const data = new FormData();
+                    data.append("data", "{}")
+                    data.append("files.profileImage", profileImage)
+
+                    updateProfile(userId, isStudent, data)
+                      .then(() => {
+                        fetchPageData();
+                      });
+                  }
+                }>
+                  <div>
+                    <button
+                      className={"profile-page-round profile-page-item-border profile-page-button"}
+                      type={"button"}
+                      onClick={() => {
+                        selectImageButtonRef.current.click();
+                      }}
+                    >
+                      Select Image
+                    </button>
+                    <input
+                      ref={selectImageButtonRef}
+                      name={"profileImage"} type={"file"}
+                    />
+                  </div>
+                  <div>
+                    <button
+                      className={"profile-page-round profile-page-item-border profile-page-button"}
+                      type={"submit"}
+                      onClick={() => {
+                        setIsEditingProfileImage(false);
+                      }}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      className={"profile-page-round profile-page-item-border profile-page-button"}
+                      type={"submit"}
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              ) : (
+                <button
+                  className={"profile-page-round profile-page-item-border profile-page-button"}
+                  onClick={() => {
+                    setIsEditingProfileImage(true);
+                  }}
+                >
+                  Edit
+                </button>
+              )
+            )}
+          </>
+        )}
       />
       <div className="profile-biography-section profile-page-section">
         <h2>User Biography</h2>
         {isEditingBio ? (
-          <div>
+          <form
+            className={"profile-edit-biography-form"}
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
+          >
             <textarea
-              value={bio}
-              onChange={handleBioChange}
+              className={"profile-page-item-border profile-page-round"}
+              value={newBio}
+              onChange={(e) => {
+                setNewBio(e.target.value)
+              }}
               rows="4"
               cols="50"
             />
-            <button onClick={handleBioSave}>Done</button>
-          </div>
+            <div>
+              {/* Cancel */}
+              <button
+                className={"profile-page-round profile-page-item-border profile-page-button"}
+                type={"button"}
+                onClick={() => {
+                  setIsEditingBio(false);
+                }
+                }>
+                Cancel
+              </button>
+              {/* Save */}
+              <button
+                className={"profile-page-round profile-page-item-border profile-page-button"}
+                type={"button"}
+                onClick={() => {
+                  setIsEditingBio(false);
+
+                  updateProfile(userId, isStudent, {
+                    biography: newBio,
+                  }).then(() => {
+                    fetchPageData();
+                  });
+                }
+                }>
+                Save
+              </button>
+            </div>
+          </form>
         ) : (
           <div>
-            <p>{bio}</p>
-            <button onClick={handleBioEdit}>Edit</button>
+            <p>{pageData.biography}</p>
+            {/* Edit */}
+            {isOwnProfile && (
+              <button
+                className={"profile-page-round profile-page-item-border profile-page-button"}
+                onClick={() => {
+                  setIsEditingBio(true);
+                  setNewBio(pageData.biography);
+                }
+              }>
+                Edit
+              </button>
+            )}
           </div>
         )}
       </div>
       <div className='profile-badge-display profile-page-section'>
         <h2>Badge Display</h2>
         <div className='profile-badge-display-container nav-padding'>
-          {/*renderBadgeDisplays()*/}
           {renderFullyAchievedBadges()}
         </div>
       </div>
