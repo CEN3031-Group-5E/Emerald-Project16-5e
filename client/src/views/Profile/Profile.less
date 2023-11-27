@@ -72,6 +72,69 @@
   grid-column: span 1;
 }
 
+.profile-page-button {
+  background-color: #f0d65b;
+  text-align: center;
+  font-weight: bold;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.profile-page-button:hover {
+  background-color: #ffeea6;
+}
+
+.profile-edit-profile-image-form {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.profile-edit-profile-image-form > div {
+  padding-bottom: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+
+.profile-edit-profile-image-form input[type=file] {
+  width: 8rem;
+
+  padding-left: 0.5rem;
+  text-align: center;
+  font-weight: bold;
+
+  border-style: solid;
+  border-color: #00000000;
+  border-width: 0.2rem;
+}
+
+.profile-edit-profile-image-form input::file-selector-button {
+  display: none;
+}
+
+.profile-edit-profile-image-form input::file-selector-button:hover {
+  background-color: #ffeea6;
+}
+
+.profile-edit-biography-form {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.profile-edit-biography-form > textarea {
+  background-color: #colors[tertiary];
+  padding: 0.5rem;
+}
+
+.profile-edit-biography-form > div {
+  padding-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+}
+
 // Todo Should move to separate component
 .profile-badge-display-slot {
   grid-row: span 3;
