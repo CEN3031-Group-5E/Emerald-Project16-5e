@@ -8,7 +8,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import ProjectSection from "../../components/Profile/ProjectSection";
 import BadgeTable from "../../components/Profile/BadgeTable";
 import BadgeDisplay from "../../components/Profile/BadgeDisplay";
-import { getBadge, getBadges, getProfile, updateProfile } from "../../Utils/requests";
+import { getBadges, getProfile, updateProfile } from "../../Utils/requests";
 
 const defaultProfileImageUrl = "/images/default_profile.png"
 
