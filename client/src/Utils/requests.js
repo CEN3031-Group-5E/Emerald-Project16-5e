@@ -698,3 +698,26 @@ export const updateProfile = async (userId, isStudent, data) =>
     auth: true,
     error: 'Failed to update profile',
   });
+
+export const getBadges = async () =>
+makeRequest({
+  method: GET,
+  path: `${server}/badges`,
+  auth: true,
+  error: 'Unable to retrive badges',
+});
+
+/**
+* @param {number} badgeId
+* @param {object} data
+*/
+export const updateBadge = async (badgeId, data) =>
+ makeRequest({
+   method: PUT,
+   path: `${server}/badges/${badgeId}`,
+   data: data,
+   auth: true,
+   error: 'Failed to update badge',
+ });
+
+

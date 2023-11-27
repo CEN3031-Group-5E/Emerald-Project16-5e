@@ -1,5 +1,6 @@
 import "./Profile.less";
 
+import { useParams } from 'react-router-dom';
 import { server } from "../../Utils/hosts";
 import React, { Fragment, useEffect, useState, useRef } from "react";
 import ProfileCard from "../../components/Profile/ProfileCard";
@@ -8,14 +9,21 @@ import NavBar from "../../components/NavBar/NavBar";
 import ProjectSection from "../../components/Profile/ProjectSection";
 import BadgeTable from "../../components/Profile/BadgeTable";
 import BadgeDisplay from "../../components/Profile/BadgeDisplay";
-import { getProfile, updateProfile } from "../../Utils/requests";
+import { getBadges, getProfile, updateProfile } from "../../Utils/requests";
 
 const defaultProfileImageUrl = "/images/default_profile.png"
 
 const Profile = () => {
-  const userId = 1; // Todo Get from url params
-  const isStudent = false; // Todo Get from url params
-  const isOwnProfile = true; // Todo Check if profile belongs to logged in user
+  const params = useParams();
+  let userId = params.userId;
+  let isStudent = Boolean(JSON.parse(params.isStudent ?? "false"));
+  const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
+
+  if (!userId) {
+    // Parameters aren't provided, use current user
+    userId = String(loggedInUser.id);
+    isStudent = Boolean(loggedInUser.isStudent);
+  }
 
   const [pageData, setPageData] = useState({
     status: "loading",
@@ -24,11 +32,15 @@ const Profile = () => {
   const fetchPageData = async () => {
     try {
       const getProfileResponse = await getProfile(userId, isStudent);
+      const getBadgesResponse = await getBadges();
       const newPageData = {
         status: "loaded",
         profileImage: `${server}${getProfileResponse.data.profile.profileImage?.url}` ?? defaultProfileImageUrl,
-        biography: getProfileResponse.data.profile.biography ?? "User does not have a biography..."
+        biography: getProfileResponse.data.profile.biography ?? "User does not have a biography...",
+        badges: getBadgesResponse.data,
       }
+      //log of badges
+      console.log(getBadgesResponse.data);
 
       if (getProfileResponse.data.profile.type === "user") {
         newPageData.name = getProfileResponse.data.profile.user.username;
@@ -75,19 +87,6 @@ const Profile = () => {
   ]);
   const [isEditingBadges, setIsEditingBadges] = useState(null);
 
-  const handleBioEdit = () => {
-    setIsEditingBio(true);
-  };
-
-  const handleBioSave = () => {
-    setIsEditingBio(false);
-    // You can save the updated bio to your backend or state management system here
-  };
-
-  const handleBioChange = (e) => {
-    setBio(e.target.value);
-  };
-
   const renderBadgeDisplays = () => {
     return badgeProgress
       .filter(badge => badge.progress < 100)
@@ -113,7 +112,6 @@ const Profile = () => {
         />
       ));
   }
-
 
   return (
     <div className='profile-page-grid nav-padding'>
