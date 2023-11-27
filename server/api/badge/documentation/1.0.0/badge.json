@@ -595,6 +595,9 @@
               }
             }
           },
+          "progress": {
+            "type": "number"
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -608,6 +611,9 @@
           },
           "description": {
             "type": "string"
+          },
+          "progress": {
+            "type": "number"
           },
           "published_at": {
             "type": "string",
