@@ -1,5 +1,5 @@
 import "./Profile.less";
-
+import { useParams } from 'react-router-dom';
 import { server } from "../../Utils/hosts";
 import React, { Fragment, useEffect, useState, useRef } from "react";
 import ProfileCard from "../../components/Profile/ProfileCard";
@@ -13,9 +13,16 @@ import { getProfile, updateProfile } from "../../Utils/requests";
 const defaultProfileImageUrl = "/images/default_profile.png"
 
 const Profile = () => {
-  const userId = 1; // Todo Get from url params
-  const isStudent = false; // Todo Get from url params
-  const isOwnProfile = true; // Todo Check if profile belongs to logged in user
+  const params = useParams();
+  let userId = params.userId;
+  let isStudent = Boolean(JSON.parse(params.isStudent ?? "false"));
+  const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
+
+  if (!userId) {
+    // Parameters aren't provided, use current user
+    userId = String(loggedInUser.id);
+    isStudent = Boolean(loggedInUser.isStudent);
+  }
 
   const [pageData, setPageData] = useState({
     status: "loading",
