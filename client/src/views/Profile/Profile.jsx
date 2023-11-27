@@ -18,6 +18,7 @@ const Profile = () => {
   let userId = params.userId;
   let isStudent = Boolean(JSON.parse(params.isStudent ?? "false"));
   const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
+  const isOwnProfile = true;
 
   if (!userId) {
     // Parameters aren't provided, use current user
