@@ -33,19 +33,63 @@
   border-radius: 1rem;
 }
 
-.profile-badge-display-container {
+/*.profile-badge-display-container {
   max-height: 640px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  /* Define 3 columns with the desired width ratio */
+  
   grid-template-rows: 2fr 2fr 2fr 2fr;
-  /* Define 3 rows with the desired height ratio */
+  
   gap: 2rem;
-  /* Add some gap between cells */
+  
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+}*/
+
+.badge-item {
+  flex: 0 0 auto; /* Do not grow or shrink */
+  margin-right: 10px; /* Adjust space between badges */
+  width: 90%; /* Reduce width of each badge */
+  /* Adjust other properties like height, padding as needed */
+}
+
+.profile-badge-display {
+  max-height: 500px; /* Adjust this value based on your layout */
+  overflow-y: auto; /* Allows vertical scrolling */
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+.profile-badge-display-container {
+  max-height: 640px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three columns */
+  gap: 10px;
   padding-left: 1rem;
   padding-right: 1rem;
   padding-bottom: 1rem;
 }
+
+@media (max-width: 768px) {
+  .badge-item {
+    width: 80%; /* Example: smaller width on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .badge-item {
+    width: 70%; /* Even smaller on very small screens */
+  }
+}
+
+.profile-available-badges {
+  max-height: 800px; /* Adjust based on your layout needs */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  overflow-y: auto; /* Show vertical scrollbar only if needed */
+  grid-row: span 1;
+  grid-column: span 1;
+}
+
 
 .profile-card {
   grid-row: span 2;
@@ -142,6 +186,7 @@
 
   background-color: #f0d65b;
 }
+
 
 .profile-badge-display-change-button {
   grid-row: span 1;
