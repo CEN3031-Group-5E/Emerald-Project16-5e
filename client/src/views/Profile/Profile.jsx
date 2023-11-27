@@ -8,7 +8,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import ProjectSection from "../../components/Profile/ProjectSection";
 import BadgeTable from "../../components/Profile/BadgeTable";
 import BadgeDisplay from "../../components/Profile/BadgeDisplay";
-import { getProfile, updateProfile } from "../../Utils/requests";
+import { getBadges, getProfile, updateProfile } from "../../Utils/requests";
 
 const defaultProfileImageUrl = "/images/default_profile.png"
 
@@ -31,11 +31,15 @@ const Profile = () => {
   const fetchPageData = async () => {
     try {
       const getProfileResponse = await getProfile(userId, isStudent);
+      const getBadgesResponse = await getBadges();
       const newPageData = {
         status: "loaded",
         profileImage: `${server}${getProfileResponse.data.profile.profileImage?.url}` ?? defaultProfileImageUrl,
-        biography: getProfileResponse.data.profile.biography ?? "User does not have a biography..."
+        biography: getProfileResponse.data.profile.biography ?? "User does not have a biography...",
+        badges: getBadgesResponse.data,
       }
+      //log of badges
+      console.log(getBadgesResponse.data);
 
       if (getProfileResponse.data.profile.type === "user") {
         newPageData.name = getProfileResponse.data.profile.user.username;
