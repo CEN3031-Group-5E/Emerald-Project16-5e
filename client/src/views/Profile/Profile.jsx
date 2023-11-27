@@ -2,7 +2,6 @@ import "./Profile.less";
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import ProfileCard from "../../components/Profile/ProfileCard";
-import Badge from "../../components/Profile/Badge";
 import ProgressBar from "../../components/Profile/ProgressBar";
 import NavBar from "../../components/NavBar/NavBar";
 import ProjectSection from "../../components/Profile/ProjectSection";
@@ -11,18 +10,16 @@ import BadgeDisplay from "../../components/Profile/BadgeDisplay";
 import { getProfile } from "../../Utils/requests";
 
 const Profile = () => {
-  // const userId = 55; // Todo Get from url params
-  // const isStudent = true; // Todo Get from url params
-  const { userId, isStudent } = useParams();
+  const params = useParams();
+  let userId = params.userId;
+  let isStudent = Boolean(JSON.parse(params.isStudent ?? "false"));
+  const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
 
-  // Check if parameters are provided, otherwise use default values or fall back to current user
-  const defaultUserId = 32;
-  const defaultIsStudent = true;
-  
-  // Use the provided values or defaults
-  const profileUserId = userId || defaultUserId;
-  const profileIsStudent = isStudent !== undefined ? isStudent === 'true' : defaultIsStudent;
-
+  if (!userId) {
+    // Parameters aren't provided, use current user
+    userId = String(loggedInUser.id);
+    isStudent = Boolean(loggedInUser.isStudent);
+  }
 
   const [pageData, setPageData] = useState({
     status: "loading",
@@ -54,11 +51,8 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    console.log('userId:', profileUserId);
-    console.log('isStudent:', profileIsStudent);
-    
-    refreshPageData(profileUserId, profileIsStudent);
-  }, [profileUserId, profileIsStudent]);
+    refreshPageData();
+  }, []);
 
   const [bio, setBio] = useState('Your bio text goes here');
   const [isEditingBio, setIsEditingBio] = useState(false);
