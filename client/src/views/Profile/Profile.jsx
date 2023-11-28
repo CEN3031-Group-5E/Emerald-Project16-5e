@@ -29,20 +29,20 @@ const Profile = () => {
     setBio(e.target.value);
   };
 
-  const handleBadgeEdit = (badgeIndex) => {
-    // Toggle the editing state for the selected badge
-    setIsEditingBadges(badgeIndex);
-  };
+  // const handleBadgeEdit = (badgeIndex) => {
+  //   // Toggle the editing state for the selected badge
+  //   setIsEditingBadges(badgeIndex);
+  // };
 
-  const handleBadgeSave = (badgeIndex, newBadgeID) => {
-    // Save the changes and update the selected badge
-    setSelectedBadges((prevBadges) => {
-      const updatedBadges = [...prevBadges];
-      updatedBadges[badgeIndex] = newBadgeID;
-      return updatedBadges;
-    });
-    setIsEditingBadges(null);
-  };
+  // const handleBadgeSave = (badgeIndex, newBadgeID) => {
+  //   // Save the changes and update the selected badge
+  //   setSelectedBadges((prevBadges) => {
+  //     const updatedBadges = [...prevBadges];
+  //     updatedBadges[badgeIndex] = newBadgeID;
+  //     return updatedBadges;
+  //   });
+  //   setIsEditingBadges(null);
+  // };
 
   return (
     <div className='profile-page-grid nav-padding'>
@@ -75,9 +75,10 @@ const Profile = () => {
         <h2>Badge Display</h2>
         <div className='profile-badge-display-container nav-padding'>
         
-        <BadgeDisplay />
-        <BadgeDisplay />
-        <BadgeDisplay />
+        <BadgeDisplay/>
+        <BadgeDisplay/>
+        <BadgeDisplay/>
+        <BadgeDisplay/>
 
         </div>
       </div>
@@ -88,8 +89,6 @@ const Profile = () => {
           <ProgressBar progress={20} />
           <ProgressBar progress={50} />
           <ProgressBar progress={90} />
-        
-
         </div>
 
         <div className='badge-table'>
@@ -101,3 +100,15 @@ const Profile = () => {
 }
 
 export default Profile;
+export const handleBadgeEdit = (badgeIndex) => {
+  setIsEditingBadges(badgeIndex);
+};
+export const handleBadgeSave = (badgeIndex, newBadgeID) => {
+  // Save the changes and update the selected badge
+  setSelectedBadges((prevBadges) => {
+    const updatedBadges = [...prevBadges];
+    updatedBadges[badgeIndex] = newBadgeID;
+    return updatedBadges;
+  });
+  setIsEditingBadges(null);
+};

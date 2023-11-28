@@ -1,5 +1,6 @@
 import "./BadgeDisplay.less";
 import Badge from "./Badge";
+import { handleBadgeEdit } from "../../views/Profile/Profile";
 
 const BadgeDisplay = () => {
   return (
@@ -12,7 +13,7 @@ const BadgeDisplay = () => {
             />
             
         </div>
-        <h3 class='profile-badge-display-change-button badge-display-round-large badge-display-item-border'>Change</h3>
+        <button onClick={handleBadgeEdit}>Change</button>
     </div>
   )
 }
