@@ -170,7 +170,7 @@ const Profile = () => {
                   <div>
                     <button
                       className={"profile-page-round profile-page-item-border profile-page-button"}
-                      type={"submit"}
+                      type={"button"}
                       onClick={() => {
                         setIsEditingProfileImage(false);
                       }}
@@ -266,14 +266,14 @@ const Profile = () => {
       </div>
       <div className='profile-badge-display profile-page-section'>
         <h2>Badge Display</h2>
-        <div className='profile-badge-display-container nav-padding'>
+        <div className='profile-badge-display-container'>
           {renderFullyAchievedBadges()}
         </div>
       </div>
       <ProjectSection/>
       <div className='profile-available-badges profile-page-section'>
         <h2>Available Badges</h2>
-        <div className='profile-badge-display-container'>
+        <div className='profile-available-badge-display-container'>
           {renderBadgeDisplays()}
         </div>
       </div>
