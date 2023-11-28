@@ -158,7 +158,7 @@ const Profile = () => {
                   <div>
                     <button
                       className={"profile-page-round profile-page-item-border profile-page-button"}
-                      type={"submit"}
+                      type={"button"}
                       onClick={() => {
                         setIsEditingProfileImage(false);
                       }}
