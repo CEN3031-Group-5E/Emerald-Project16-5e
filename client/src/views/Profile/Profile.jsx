@@ -22,8 +22,13 @@ const Profile = () => {
 
   if (!userId) {
     // Parameters aren't provided, use current user
-    userId = String(loggedInUser.id);
-    isStudent = Boolean(loggedInUser.isStudent);
+    isStudent = Array.isArray(loggedInUser)
+    if (isStudent) {
+      userId = String(loggedInUser[0]);
+    }
+    else {
+      userId = String(loggedInUser.id);
+    }
   }
 
   const [pageData, setPageData] = useState({
