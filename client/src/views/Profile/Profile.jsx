@@ -18,7 +18,9 @@ const Profile = () => {
   let userId = params.userId;
   let isStudent = Boolean(JSON.parse(params.isStudent ?? "false"));
   const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
-  const isOwnProfile = true;
+  let isOwnProfile;
+  let loggedInUserId;
+  let loggedInUserIsStudent;
 
   if (!userId) {
     // Parameters aren't provided, use current user
@@ -30,6 +32,16 @@ const Profile = () => {
       userId = String(loggedInUser.id);
     }
   }
+
+  if (Array.isArray(loggedInUser)) {
+    loggedInUserId = String(loggedInUser[0]);
+    loggedInUserIsStudent = Boolean(loggedInUser[0].isStudent);
+  } else {
+    loggedInUserId = String(loggedInUser.id);
+    loggedInUserIsStudent = Boolean(loggedInUser.isStudent);
+  }
+
+  isOwnProfile = userId === loggedInUserId && isStudent === loggedInUserIsStudent;
 
   const [pageData, setPageData] = useState({
     status: "loading",
