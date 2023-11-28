@@ -33,19 +33,16 @@
   border-radius: 1rem;
 }
 
-/*.profile-badge-display-container {
-  max-height: 640px;
+.profile-badge-display-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  
-  grid-template-rows: 2fr 2fr 2fr 2fr;
-  
+
   gap: 2rem;
-  
+
   padding-left: 1rem;
   padding-right: 1rem;
   padding-bottom: 1rem;
-}*/
+}
 
 .badge-item {
   flex: 0 0 auto; /* Do not grow or shrink */
@@ -55,15 +52,13 @@
 }
 
 .profile-badge-display {
-  max-height: 500px; /* Adjust this value based on your layout */
   overflow-y: auto; /* Allows vertical scrolling */
   overflow-x: hidden; /* Prevents horizontal scrolling */
 }
 
-.profile-badge-display-container {
-  max-height: 640px;
+.profile-available-badge-display-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Three columns */
+  grid-template-columns: repeat(5, 1fr); /* Three columns */
   gap: 10px;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -83,7 +78,6 @@
 }
 
 .profile-available-badges {
-  max-height: 800px; /* Adjust based on your layout needs */
   overflow-x: hidden; /* Hide horizontal scrollbar */
   overflow-y: auto; /* Show vertical scrollbar only if needed */
   grid-row: span 1;
