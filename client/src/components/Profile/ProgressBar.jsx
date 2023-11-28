@@ -1,6 +1,5 @@
 import "./ProgressBar.less";
 
-
 const Progress = ({
   progress
 }) => {
