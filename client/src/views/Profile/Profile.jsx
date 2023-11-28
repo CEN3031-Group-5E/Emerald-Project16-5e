@@ -17,31 +17,21 @@ const Profile = () => {
   const params = useParams();
   let userId = params.userId;
   let isStudent = Boolean(JSON.parse(params.isStudent ?? "false"));
+
+  // Get information from logged in user
   const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
-  let isOwnProfile;
-  let loggedInUserId;
-  let loggedInUserIsStudent;
+  const loggedInUserIsStudent = Array.isArray(loggedInUser);
+  const loggedInUserId = loggedInUserIsStudent ? String(loggedInUser[0]) : String(loggedInUser.id);
 
+  // If parameters aren't provided, use current user
   if (!userId) {
-    // Parameters aren't provided, use current user
-    isStudent = Array.isArray(loggedInUser)
-    if (isStudent) {
-      userId = String(loggedInUser[0]);
-    }
-    else {
-      userId = String(loggedInUser.id);
-    }
+    userId = loggedInUserId;
+    isStudent = loggedInUserIsStudent;
   }
 
-  if (Array.isArray(loggedInUser)) {
-    loggedInUserId = String(loggedInUser[0]);
-    loggedInUserIsStudent = Boolean(loggedInUser[0].isStudent);
-  } else {
-    loggedInUserId = String(loggedInUser.id);
-    loggedInUserIsStudent = Boolean(loggedInUser.isStudent);
-  }
-
-  isOwnProfile = userId === loggedInUserId && isStudent === loggedInUserIsStudent;
+  // Check if displayed profile is user's profile
+  // This is used to hide edit functionality
+  const isOwnProfile = userId === loggedInUserId && isStudent === loggedInUserIsStudent;
 
   const [pageData, setPageData] = useState({
     status: "loading",
