@@ -23,12 +23,10 @@ const Profile = () => {
   if (!userId) {
     // Parameters aren't provided, use current user
     isStudent = Array.isArray(loggedInUser)
-    if (isStudent) // Replace condition
-    {
+    if (isStudent) {
       userId = String(loggedInUser[0]);
     }
-    else
-    {
+    else {
       userId = String(loggedInUser.id);
     }
   }
