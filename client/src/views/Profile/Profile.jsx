@@ -43,12 +43,14 @@ const Profile = () => {
       const getBadgesResponse = await getBadges();
       const newPageData = {
         status: "loaded",
-        profileImage: `${server}${getProfileResponse.data.profile.profileImage?.url}` ?? defaultProfileImageUrl,
+        profileImage: defaultProfileImageUrl,
         biography: getProfileResponse.data.profile.biography ?? "User does not have a biography...",
         badges: getBadgesResponse.data,
       }
-      //log of badges
-      console.log(getBadgesResponse.data);
+
+      if (getProfileResponse.data.profile.profileImage?.url) {
+        newPageData.profileImage = `${server}${getProfileResponse.data.profile.profileImage?.url}`;
+      }
 
       if (getProfileResponse.data.profile.type === "user") {
         newPageData.name = getProfileResponse.data.profile.user.username;
