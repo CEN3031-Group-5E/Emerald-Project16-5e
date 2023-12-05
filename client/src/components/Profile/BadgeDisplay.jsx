@@ -22,7 +22,7 @@ const BadgeDisplay = ({ imageUrl, name, progressPercent }) => {
       )}
 
       <button
-        className='btn'
+        className='badge-display-button'
         onClick={toggleTextAndBadge}
         style={{ height: buttonHeight + 'px' }} // Apply height dynamically
       >
