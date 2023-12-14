@@ -141,105 +141,109 @@ Before submitting a pull request, rebase the feature branch into the target bran
 - PRs to **master** should squash and merge
 - PRs to all other branches should create a merge commit
 
-# Added Features
-1. Initial Profile Page Layout
-   Developer: Rohit Nair
-   Description: Create the overall layout of the student view of the profile page'
+## Added Features
+
+### 1. Profile Page Layout
+**Developer:** Rohit Nair  
+**Description:** Create the overall layout of the student view of the profile page.
    
+### 2. Profile Page Link on NavBar
+**Developer:** Rohit Nair  
+**Objective:** Create a link to the profile page in the NavBar that is only available to logged-in users.
 
-3. Profile Page Link on NavBar
-   Developer: Rohit Nair
-   Objective: Create a link to the profile page in the NavBar that is only available to logged-in users.
-       
-4. Per User Profile Routes
-   Developer: Rohit Nair
-   Description: Based on the type of user that logs in (student or teacher), the link should direct to that specific page.
+### 3. Per User Profile Routes
+**Developer:** Rohit Nair  
+**Description:** Based on the type of user that logs in (student or teacher), the link should direct to that specific page.
 
-5. Student Profile Page
-   Developer: Rohit Nair
-   Description: If a student logs in to their account, clicking on the profile option in the navbar should display the student view of the profile page.
+### 4. Student Profile Page
+**Developer:** Rohit Nair  
+**Description:** If a student logs in to their account, clicking on the profile option in the navbar should display the student view of the profile page.
 
-6. Teacher Profile Page - Not Fully Implemented
-   Developer: Rohit Nair
-   Description: If a teacher logs in to their account, clicking on the profile option in the navbar should display the teacher view of the profile page.
+### 5. Teacher Profile Page - Not Fully Implemented
+**Developer:** Rohit Nair  
+**Description:** If a teacher logs in to their account, clicking on the profile option in the navbar should display the teacher view of the profile page.
 
-7. Initial Profile Card
-   Developer: William Chen
-   Description: A user should be able to display their profile image, name, and role. This was implemented in the form of a profile card.
+### 6. Initial Profile Card
+**Developer:** William Chen  
+**Description:** A user should be able to display their profile image, name, and role. This was implemented in the form of a profile card.
 
-8. Initial Projects Section
-   Developer: William Chen
-   Description: A student should be able to display the projects that they worked on. The individual projects were intended to use the project component the gallery team provides.
+### 7. Initial Projects Section
+**Developer:** William Chen  
+**Description:** A student should be able to display the projects that they worked on. The individual projects were intended to use the project component the gallery team provides.
 
-9. Profile Page Data
-   Developer: William Chen
-   Description: The data for a user’s profile should be stored, persisted, and fetched on the backend. To do this, a database collection and API was implemented on the backend. Additionally, data fetching was implemented on the frontend on the profile page.
+### 8. Profile Page Data
+**Developer:** William Chen  
+**Description:** The data for a user’s profile should be stored, persisted, and fetched on the backend. ...
 
-10. Profile Page Editing
-   Developer: William Chen
-   Description: A user should be able to edit their profile page. To do this, forms were implemented for editing a user’s profile image and biography. These forms are only shown if the user owns the profile and sends a request to the backend API to modify the profile data when submitted.
+### 9.Profile Page Editing
+**Developer:** William Chen  
+**Description:** A user should be able to edit their profile page. To do this, forms were implemented for editing a user’s profile image and biography.
 
+### 10. User Projects - Initial Implementation
+**Developer:** Komlan Tchoukou  
+**Description:** Initial implementation was supposed to allow users to add their projects to their profile page, however, for the sake of time these are default user projects.
 
-11. User Projects
-    Developer: Komlan Tchoukou
-    Description: Initial was supposed to allow users to add their projects to their profile page, however for the sake of time these are default user projects.
+### 11. Badge Display Editing
+**Developer:** Komlan Tchoukou  
+**Description:** Allows users to choose what badges they want to display by either removing or adding buttons.
 
-12. Badge display editing
-    Developer: Komlan Tchoukou
-    Description: Allows users to choose what badges they want to display by either removing or adding buttons
+### 12. Available Badges Section
+**Developer:** Joshua Thomas  
+**Description:** I implemented an array component into the Available Badges section of the student profile so that depending on the number of badges, they won’t all appear one below the other but instead have multiple appear in the same row like a multi-column table.
 
+### 13. Custom Badges
+**Developer:** Joshua Thomas  
+**Description:** As a student, I want to see some badges that I can earn when starting to learn to code. To achieve this, I created some default badges that by default would appear in the Available Badges section when new students set up their student accounts and profiles.
 
-13. Available Badges Section
-    Developer: Joshua Thomas
-    Description: I implemented an array component into the Available Badges section of the student profile so that depending on the number of badges, they won’t all appear one below the other but instead have multiple appear in the same row like a multi-column table.
+### 14. Badge Progress Bar Linked with Individual Badges
+**Developer:** Joshua Thomas  
+**Description:** As a student, I want to know how much progress I have made towards achieving a certain badge. Using the progress bar component Georges created, I connected it with the badge component so that a progress bar displays the progress made for each badge in the Available Badges section of the student profile page.
 
-14. Custom Badges
-    Developer: Joshua Thomas
-    Description: As a student, I want to see some badges that I can earn when starting to learn to code. To achieve this, I created some default badges that by default would appear in the Available Badges section when new students set up their student accounts and profiles.
+### 15. Earned/in-progress/not-started Badges
+**Developer:** Joshua Thomas  
+**Description:** The way a badge is displayed should be modified based on the progress a student has made towards achieving it.
 
-15. Badge Progress Bar Linked with Individual Badges
-    Developer: Joshua Thomas
-    Description: As a student, I want to know how much progress I have made towards achieving a certain badge. Using the progress bar component Georges created, I connected it with the badge component so that a progress bar displays the progress made for each badge in the Available Badges section of the student profile page
+### 16. Earned Badges Section
+**Developer:** Joshua Thomas  
+**Description:** As a student, I want to be able to display the badges I have fully achieved.
 
-16. Earned/in-progress/not-started badges
-    Developer: Joshua Thomas
-    Description: The way a badge is displayed should be modified based on the progress a student has made towards achieving it. To achieve this, a grayscale component was implemented which modifies the color of the badge based on the progress made. The less progress, the more gray the badge looks and the more progress they make, the more colored and bright the badge will look.
+### 17. Badge Creation Form - Not Fully Implemented
+**Developer:** Joshua Thomas  
+**Description:** As a teacher, I want to create custom badges that are specific to my classroom so the badges are more meaningful for the students.
 
+### 18. Badge Display/Available Badges API
+**Developer:** Georges Sfeir  
+**Description:** As a student, I want to display the badges for work to showcase my abilities. For this task, I learned how to interact with the badges in the backend, as well as how to create the API requests for displaying the badges on the frontend.
 
-17. Earned Badges Section
-    Developer: Joshua Thomas
-    Description: As a student, I want to be able to display the badges I have fully achieved. To do this, a filter was implemented on the Badge Display section of the student profile to show only badges that have been fully achieved by the student, which means the progress bar is at 100%. Also, the display was modified such that the progress bar is removed and only the badge and the name of the badge are displayed.
+### 19. Badge Progress Bar
+**Developer:** Georges Sfeir  
+**Description:** As a student, I want to know how much progress I have made towards achieving a certain badge. I created the badge progress bar component, displayable on the frontend, during the first sprint.
 
-18. Badge Creation Form - Not Fully Implemented
-    Developer: Joshua Thomas
-    Description: As a teacher, I want to create custom badges that are specific to my classroom so the badges are more meaningful for the students. To do this, I created a Create Badge From section in the teacher profile which takes the same spot as the Badge Display in the student profile view. I created the create badge form where the teacher is able to upload images of badges they want to offer their students. The Cancel button functions properly where it closes the form. The only part of the form that doesn’t work is the submit button which would store the badge data in the backend and become accessible to display on the frontend.
+### 20. Badges Backend Collection
+**Developer:** Georges Sfeir  
+**Description:** Within the backend of the project, there are collection bins of different sorts of data, one of which is for the custom badges. I created this collection and imported all of our badges and their corresponding data so that they could be further utilized and displayed on the frontend.
 
-19. Badge Display/Available Badges API
-    Developer: Georges Sfeir
-    Description: As a student, I want to display the badges for work to showcase my abilities. For this task, I learned how to interact with the badges in the backend, as well as how to create the API requests for displaying the badges on the frontend.
- 
-20. Badge Progress Bar
-    Developer: Georges Sfeir
-    Description: As a student, I want to know how much progress I have made towards achieving a certain badge. I created the badge progress bar component, displayable on the frontend, during the first sprint. For the creation of this component, I used CSS styling and javascript. Joshua then linked the components individually to badges during sprint 2.
+### 21. Badge and Badge Display Components 
+**Developer:** Patrick Lehman  
+**Description:** Badge components serve as modular components to contain a Badge’s Image, progress bar, name, and other attributes.
 
-21. Badges Backend Collection
-    Developer: Georges Sfeir
-    Description: Within the backend of the project there are collection bins of different sorts of data, one of which is for the custom badges. I created this collection and imported all of our badges and their corresponding data so that they could be further utilized and displayed on the frontend.
-
-22. Badge and Badge Display Components
-    Developer: Patrick Lehman
-    Decription: Badge components serves as a modular component to contain a Badge’s Image, progress bar, name and other attributes
-    Badge.jsx file for Badge Component
-
-    Badge.less (styling)  file for Badge Component
+### 22. Badge Connection to Backend (Tracking Badge Attributes) 
+**Developer:** Patrick Lehman, Georges Sfeir  
+**Description:** Functions that connect the Badge to the backend and allow all attributes to be updated in real time
 
 
-    BadgeDisplay.jsx file for BadgeDisplay Component (contains multiple badges)
+## Instructions for running the project locally
+1. Open the Docker Desktop App.
+2. Open a terminal window and navigate to the folder where you cloned 'Emerald-Project16-5e'. Run `docker compose up`.
+3. Open a different termal window and navigate to the client folder. Run `yarn start`.
+4. Wait until the first window reaches the "Welcome to your Project" screen. There should be two links. Click on the one that says "localhost:1337/admin".
+5. On the second window, click on the link that says "localhost:3000".
 
 
-    BadgeDisplay.less (styling)  file for BadgeDisplay Component
+## Updating Database
+The database for the repo has not been changed. During development, running docker compose up will start the PostgreSQL database along with other services the application needs to run.
+The file storage strategy for the repo has not been changed. During development, files uploaded to the server (eg: profile and badge images) are stored directly in the repo.
 
-23. Badge Connection to Backend (Tracking Badge Attributes)
-    Developers: Patrick / Georges Sfeir
-    Description: Functions that connect the Badge to the backend and allow all attributes to be updated in real time (later changed to the single function shown)
 
+## Outstanding Work
+The only planned work not finished is the functionality of the teacher profile page. Also, the next steps would be integration of the Projects functionality developed by a different team onto the Student Profile Page.
